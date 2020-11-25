@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8" />
+<title>Admin Manager</title>
+</head>
+<body>
+	<div align="center">
+		<h1>UsersList</h1>
+		<br>
+		<h3 th:inline="text">welcome
+			[[${#httpServletRequest.remoteUser}]]</h3>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout"></input>
+		</form>
+		<a href="/new">Create New User </a> <br />
+		<br />
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>User ID</th>
+					<th>Name</th>
+					<th>Role</th>
+					<th sec:authorize="hasRole('ADMIN')">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="list : ${list}">
+					<td th:text="${list.id}">Product ID</td>
+					<td th:text="${list.username}">Name</td>
+					<td th:text="${list.role}">role</td>
+
+					<td sec:authorize="hasRole('ADMIN')"><a
+						th:href="@{'/edit/' + ${list.id}}">Edit</a> &nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/delete/' + ${list.id}}">Delete</a>
+						<a th:href="@{'/question/'}">Add Question</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
