@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8" />
+<title>Admin Manager</title>
+</head>
+<body>
+	<div align="center">
+		<h1>ExamList</h1>
+		<br>
+		
+	
+		<a href="{'/addExam/'+${user.id}}">Create New Exam </a> <br />
+		
+		
+		<br />
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Exam ID</th>
+					<th>Exam Name</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="list : ${list}">
+					<td th:text="${list.Exam_Id}">Product ID</td>
+					<td th:text="${list.Exam_Name}">Name</td>
+				
+
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

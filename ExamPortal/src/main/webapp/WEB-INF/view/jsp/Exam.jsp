@@ -23,7 +23,7 @@
 				<c:url var="addAction" value="/Exam/add"></c:url>
 				<form:form action="${addAction}" method="post" modelAttribute="exam">
 					<div>
-						<form:form method="post" modelAttribute="user">
+						<form:form action="${addAction}" method="post" modelAttribute="user">
 							<form:hidden class="form-control" name="id" path="id"></form:hidden>
 						</form:form>
 					</div>
