@@ -24,9 +24,7 @@ public class Questions {
 	@JoinColumn(name="Exam_Id")
 	private Exam exam;
 	
-	public Questions() {
-		super();
-	}
+	
 	
 	public Questions(int question_Id, String question, String option1, String option2, String option3, String option4,
 			String answer) {
@@ -40,6 +38,21 @@ public class Questions {
 		this.answer = answer;
 	}
 	
+	
+	public Questions(int question_Id, String question, String option1, String option2, String option3, String option4,
+			String answer, Exam exam) {
+		super();
+		this.question_Id = question_Id;
+		this.question = question;
+		this.option1 = option1;
+		this.option2 = option2;
+		this.option3 = option3;
+		this.option4 = option4;
+		this.answer = answer;
+		this.exam = exam;
+	}
+
+
 	public int getQuestion_Id() {
 		return question_Id;
 	}
@@ -83,8 +96,17 @@ public class Questions {
 		this.answer = answer;
 	}
 	
-	
-	
+	public Exam getExam() {
+		return exam;
+	}
+
+	public void setExam(Exam exam) {
+		this.exam = exam;
+	}
+
+	public Questions() {
+		super();
+	}
 	
 	
 	

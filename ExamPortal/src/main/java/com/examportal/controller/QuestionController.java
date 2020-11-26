@@ -21,7 +21,7 @@ public class QuestionController {
 	
 
 	@RequestMapping(value = "/question", method = RequestMethod.GET)
-	public ModelAndView add(ModelAndView model) {
+	public ModelAndView ListQestion(ModelAndView model) {
 		List<Questions> listOfQuestion = questionService.listAllQuestions();
 		Questions questions=new Questions();
 		model.addObject("questions",questions);

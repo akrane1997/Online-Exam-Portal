@@ -35,6 +35,7 @@
 					<td sec:authorize="hasRole('ADMIN')"><a
 						th:href="@{'/edit/' + ${list.id}}">Edit</a> &nbsp;&nbsp;&nbsp; <a
 						th:href="@{'/delete/' + ${list.id}}">Delete</a>
+						<a th:href="@{'/Exam/'}">Add Exam</a>
 						<a th:href="@{'/question/'}">Add Question</a></td>
 				</tr>
 			</tbody>
