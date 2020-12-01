@@ -72,10 +72,13 @@ public class ExamController {
 	//	}
 
 	@RequestMapping(value = "/saveExam", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("exam") Exam exam) {
+	public String saveProduct(@AuthenticationPrincipal MyUserDetails userDetails,@ModelAttribute("exam") Exam exam) {
 
-
-		//		exam.setUser(user);
+		Long id = userDetails.Id();
+		System.out.println(id);
+		User user=userService.get(id);
+		System.out.println(user);
+			exam.setUser(user);
 		examService.saveExam(exam);
 
 		return "/exampage";
