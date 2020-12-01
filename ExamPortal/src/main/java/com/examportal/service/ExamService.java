@@ -25,8 +25,8 @@ public class ExamService {
 		examRepository.save(exam);
 	}
 	
-	public Exam getExamByExamId(int examId) {
-		return examRepository.findById(examId).get();
+	public Exam getExamByExamId(long exam_Id) {
+		return examRepository.findById((int) exam_Id).get();
 	}
 	
 	public List<Exam> getExamByExamName(String examName) {

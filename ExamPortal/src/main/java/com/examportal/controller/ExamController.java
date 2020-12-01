@@ -66,7 +66,7 @@ public class ExamController {
 	}
 
 	@RequestMapping(value = "/saveExam", method = RequestMethod.POST)
-	public String saveProduct(@AuthenticationPrincipal MyUserDetails userDetails,@ModelAttribute("exam") Exam exam) {
+	public String saveExam(@AuthenticationPrincipal MyUserDetails userDetails,@ModelAttribute("exam") Exam exam) {
 
 		Long id = userDetails.Id();
 		System.out.println(id);
@@ -111,7 +111,7 @@ public class ExamController {
 		return mav;
 	}
 
-//	//	
+
 	@RequestMapping(value = "/ExamList", method = RequestMethod.GET)
 	public String getListByExamName(@ModelAttribute("exam") Exam exam,Model mv) {
 		
