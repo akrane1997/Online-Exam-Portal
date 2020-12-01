@@ -10,27 +10,39 @@
 	<div align="center">
 		<h1>ExamList</h1>
 		<br>
-		
-	
-		<a href="{'/addExam/'+${user.id}}">Create New Exam </a> <br />
-		
-		
-		<br />
+		<form action="#" th:action="@{/saveExam}" method=post
+			th:object="${user}">
+			
+			<div th:object="${exam}">
+
+				<table>
+					<tr>
+						<td>Name:</td>
+						<td><input type="text" th:field="*{Exam_Name}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button type="submit">Save</button></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+
+		<a href="/addExa">Create New Exam </a> <br /> <br />
 		<table border="1" cellpadding="10">
 			<thead>
 				<tr>
 					<th>Exam ID</th>
 					<th>Exam Name</th>
-					
+
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="list : ${list}">
 					<td th:text="${list.Exam_Id}">Product ID</td>
 					<td th:text="${list.Exam_Name}">Name</td>
-				
 
-					
+
+
 				</tr>
 			</tbody>
 		</table>

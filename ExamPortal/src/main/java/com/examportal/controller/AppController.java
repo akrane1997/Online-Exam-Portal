@@ -19,7 +19,7 @@ import com.examportal.repo.UserRepository;
 import com.examportal.service.UserService;
 
 @Controller
-@SessionAttributes("user")
+
 public class AppController {
 
 	@Autowired

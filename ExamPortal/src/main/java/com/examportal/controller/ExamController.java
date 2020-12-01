@@ -3,13 +3,14 @@ package com.examportal.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.examportal.details.MyUserDetails;
 import com.examportal.model.Exam;
 import com.examportal.model.User;
 import com.examportal.service.ExamService;
@@ -37,30 +38,44 @@ public class ExamController {
 	//		return model;
 	//	}
 
+
+
 	@RequestMapping("/Exam")
-	public String viewHomePage(Model model) {
+	public String viewHomePage(   @AuthenticationPrincipal MyUserDetails userDetails,Model model) {
+		//		Authentication authentication= SecurityContextHolder.getContext().getAuthentication(); ;
+		//		User customUser = (User)authentication.getPrincipal();
+		//		long userId = customUser.getId();
+		//	System.out.println("use cha id"+ userId);
+
+		Long id = userDetails.Id();
+		System.out.println(id);
+		String userEmail = userDetails.getUsername();
+		System.out.println(userEmail);
 		List<Exam> list = examService.listAllExams();
+		Exam exam = new Exam();
 		List<User> listuser = userService.listAll();
 		model.addAttribute("user",listuser);
 		model.addAttribute("list", list);
+		model.addAttribute("exam", exam);
 		return "/exampage";
 	}
 
-	@RequestMapping("/addExam/{id}")
-	public String showNewProductPage(Model model,@PathVariable(name = "id") int id) {
-		Exam exam = new Exam();
-		User user = userService.get(id);
-		
-		exam.setUser(user);
-		model.addAttribute("exam", exam);
-
-		return "/addexam";
-	}
+	//	@RequestMapping("/addExam")
+	//	public String showNewProductPage(Model model) {
+	//		Exam exam = new Exam();
+	//		//User user = userService.get(id);
+	//
+	//		//exam.setUser(user);
+	//		model.addAttribute("exam", exam);
+	//
+	//		return "/addexam";
+	//	}
 
 	@RequestMapping(value = "/saveExam", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("exam") Exam exam) {
 
 
+		//		exam.setUser(user);
 		examService.saveExam(exam);
 
 		return "/exampage";

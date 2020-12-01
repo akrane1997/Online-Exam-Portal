@@ -59,4 +59,14 @@ public class MyUserDetails implements UserDetails {
 		return true;
 	}
 
+
+
+	public String getFullName() {
+		return this.user.getUsername();
+	}
+
+	public Long Id() {
+		return this.user.getId();
+	}
+
 }
