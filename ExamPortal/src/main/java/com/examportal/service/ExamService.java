@@ -31,10 +31,11 @@ public class ExamService {
 	
 	public List<Exam> getExamByExamName(String examName) {
 		List<Exam> exam=examRepository.findByExam_Name(examName);
+		
 		return exam;
 	}
 	
-	public List<Exam> getExamByUser_Id(int userId) {
+	public List<Exam> getExamByUser_Id(long userId) {
 		List<Exam> exam=examRepository.findByUser_Id(userId);
 		return exam;
 

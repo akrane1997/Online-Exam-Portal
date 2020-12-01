@@ -14,14 +14,17 @@ import com.examportal.model.Questions;
 import com.examportal.service.QuestionService;
 
 @Controller
+
 public class QuestionController {
 
 	@Autowired
+	
 	private QuestionService questionService;
 	
 
-	@RequestMapping(value = "/question", method = RequestMethod.GET)
-	public ModelAndView ListQestion(ModelAndView model) {
+	@RequestMapping(value = "/question/{Exam_Id}", method = RequestMethod.GET)
+	public ModelAndView ListQestion(ModelAndView model,@PathVariable("Exam_Id") int Exam_Id) {
+		System.out.println("Exam id :"+Exam_Id);
 		List<Questions> listOfQuestion = questionService.listAllQuestions();
 		Questions questions=new Questions();
 		model.addObject("questions",questions);
@@ -31,7 +34,8 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value= "/question/add", method = RequestMethod.POST)
-	public String addQuestion (@ModelAttribute("questions") Questions questions){
+	public String addQuestion (@ModelAttribute("questions") Questions questions,@PathVariable("Exam_Id") int Exam_Id){
+		System.out.println("Exam id :"+Exam_Id);
 		if(questions.getQuestion_Id() == 0){
 			System.out.println("jatoy");
 			questionService.saveQuestion(questions);

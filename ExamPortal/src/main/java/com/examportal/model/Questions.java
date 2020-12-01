@@ -21,7 +21,7 @@ public class Questions {
 	private String option4;
 	private String answer;
 	@ManyToOne
-	@JoinColumn(name="Exam_Id")
+	@JoinColumn(name="exam_Id")
 	private Exam exam;
 	
 	

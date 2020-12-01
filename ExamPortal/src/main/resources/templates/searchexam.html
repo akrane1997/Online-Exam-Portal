@@ -13,16 +13,7 @@
 	</form>
 	<br>
 
-	<div>
-		<h3>Exam search</h3>
-	</div>
-	<form th:object="${exam}" method="get" th:action="@{/ExamList}">
-		<div>
-			<label for="subject">Subject: </label> <input type="text"
-				name="Exam_Name" th:value="${exam}"> <input type="submit"
-				value="Search">
-		</div>
-	</form>
+
 
 	<div align="center">
 		<h1>ExamList</h1>
@@ -36,14 +27,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="list : ${list}">
+				<tr th:each="list : ${Elist}">
 					<td th:text="${list.Exam_Id}">ID</td>
 					<td th:text="${list.Exam_Name}">Name</td>
 					<td><a th:href="@{'/editExam/' + ${list.Exam_Id}}">Edit</a>
 						&nbsp;&nbsp;&nbsp; <a
 						th:href="@{'/deleteExam/' + ${list.Exam_Id}}">Delete</a>
-						&nbsp;&nbsp;&nbsp; <a th:href="@{'/question/'+ ${list.Exam_Id}}">Add Question</a></td>
 
+						&nbsp;&nbsp;&nbsp; <a th:href="@{'/question/'+ ${list.Exam_Id}}">Add Question</a></td>
 
 				</tr>
 			</tbody>

@@ -9,21 +9,25 @@
     <div align="center">
         <h1>Create New Exam</h1>
         <br />
-        <form action="#" th:action="@{/saveExam}" th:object="${exam}"
-            method="post">
- 
-            <table border="0" cellpadding="10">
-                <tr>
-                    <td> Name:</td>
-                    <td><input type="text" th:field="*{Exam_Name}" /></td>
-                </tr>
-                
-                                          
-                <tr>
-                    <td colspan="2"><button type="submit">Save</button> </td>
-                </tr>
-            </table>
-        </form>
+     		<form action="#" th:action="@{/saveExam}" method=post
+			th:object="${user}">
+			
+			<div th:object="${exam}">
+
+				<table>
+					<tr>
+						<td>Name:</td>
+						<td><input type="text" th:field="*{Exam_Name}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button type="submit">Save</button></td>
+					</tr>
+					<tr>
+						<td colspan="2"><a href="/exampage"><button >Show List</button></a></td>
+					</tr>
+				</table>
+			</div>
+		</form>
     </div>
 </body>
 </html>
