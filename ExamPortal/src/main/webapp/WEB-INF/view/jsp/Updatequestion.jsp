@@ -16,7 +16,7 @@
 <body>
 <div class="bs-example">
 			<h2 class="heading">Add Question</h2>
-			<c:url var="addAction" value="/questionUpdate"></c:url>
+			<c:url var="addAction" value='/question/${Exam_Id}/savequestion'></c:url>
 			
 			<form:form action="${addAction}" method="post"
 				modelAttribute="questions">

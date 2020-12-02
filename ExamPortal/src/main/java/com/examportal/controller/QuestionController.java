@@ -21,14 +21,14 @@ import com.examportal.service.QuestionService;
 public class QuestionController {
 
 	@Autowired
-	
+
 	private QuestionService questionService;
-	
+
 	@Autowired
 	private ExamService examService;
 
 	@RequestMapping(value = {"/question/{Exam_Id}","/listquestion"}, method = RequestMethod.GET)
-	
+
 	public ModelAndView ListQestion(ModelAndView model,@PathVariable("Exam_Id") int Exam_Id) {
 		System.out.println("Exam id :"+Exam_Id);
 		List<Questions> listOfQuestion = questionService.listAllQuestions();
@@ -41,13 +41,13 @@ public class QuestionController {
 
 	@RequestMapping("/question/{Exam_Id}/add")
 	public String addQuestion (@ModelAttribute("questions") Questions questions,@PathVariable("Exam_Id") long Exam_Id){
-		System.out.println("Exam id :"+Exam_Id);
-		
+		System.out.println("Exam id addquestion:"+Exam_Id);
+
 		Exam exam=examService.getExamByExamId(Exam_Id);
 		if(questions.getQuestion_Id() == 0){
 			System.out.println("jatoy");
 			questions.setExam(exam);
-			
+
 			questionService.saveQuestion(questions);
 		}
 		else
@@ -59,23 +59,26 @@ public class QuestionController {
 		}
 		return "redirect:/question/{Exam_Id}";
 	}
-//	@RequestMapping(value= "/questionUpdate", method = RequestMethod.POST)
-//	public String updateQuestion (@ModelAttribute("questions") Questions questions){
-//		int qId=questions.getQuestion_Id();
-//		System.out.println("qId: "+qId);			
-//			questionService.saveQuestion(questions);
-//			return "Question";
-//		}
-	
+	//	@RequestMapping(value= "/questionUpdate", method = RequestMethod.POST)
+	//	public String updateQuestion (@ModelAttribute("questions") Questions questions){
+	//		int qId=questions.getQuestion_Id();
+	//		System.out.println("qId: "+qId);			
+	//			questionService.saveQuestion(questions);
+	//			return "Question";
+	//		}
+
 	@RequestMapping(value = "/question/{Exam_Id}/savequestion", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("questions") Questions questions,@PathVariable("Exam_Id") long Exam_Id) {
-		Exam exam=examService.getExamByExamId(Exam_Id);
+	public String saveProduct(@ModelAttribute("questions") Questions questions,@PathVariable("Exam_Id") String Exam_Id)
+	{
+		long num = Long.parseLong(Exam_Id);
+
+		Exam exam=examService.getExamByExamId(num);
 		questions.setExam(exam);
 		questionService.saveQuestion(questions);
 
 		return "redirect:/question/{Exam_Id}";
 	}
-	
+
 
 
 	@RequestMapping("/question/{Exam_Id}/deleteQuestion/{question_Id}")
@@ -84,21 +87,26 @@ public class QuestionController {
 		return "redirect:/question/{Exam_Id}";
 	}
 
-//	@RequestMapping(value="/editQuestion/{question_Id}", method = RequestMethod.GET)
-//	public String editQuestion(@PathVariable("question_Id") int question_Id,ModelAndView model) {	
-//		Questions questions=questionService.getQuestionById(question_Id);
-//		int id=questions.getQuestion_Id();
-//		System.out.println("id"+id);
-//		questions.setQuestion_Id(id);
-//		model.addObject("questions",questions);
-//		
-//		return "redirect:/questionUpdate";
-//	}
-	
+	//	@RequestMapping(value="/editQuestion/{question_Id}", method = RequestMethod.GET)
+	//	public String editQuestion(@PathVariable("question_Id") int question_Id,ModelAndView model) {	
+	//		Questions questions=questionService.getQuestionById(question_Id);
+	//		int id=questions.getQuestion_Id();
+	//		System.out.println("id"+id);
+	//		questions.setQuestion_Id(id);
+	//		model.addObject("questions",questions);
+	//		
+	//		return "redirect:/questionUpdate";
+	//	}
+
 	@RequestMapping("/question/{Exam_Id}/editQuestion/{question_Id}")
-	public ModelAndView showEditProductPage(@PathVariable(name = "question_Id") int id) {
-		ModelAndView mav = new ModelAndView("/updatequestion");
+	public ModelAndView showEditProductPage(@PathVariable(name = "question_Id") int id,@PathVariable("Exam_Id") Long Exam_Id) {
+		System.out.println("Exam id show edit page:"+Exam_Id);
+
+		Exam exam=examService.getExamByExamId(Exam_Id);
+
+		ModelAndView mav = new ModelAndView("Updatequestion");
 		Questions questions =questionService.getQuestionById(id);
+		questions.setExam(exam);
 		mav.addObject("questions", questions);
 
 		return mav;
