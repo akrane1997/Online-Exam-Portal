@@ -20,8 +20,8 @@
 		<div class="bs-example">
 			<h2 class="heading">Add Question</h2>
 			<c:url var="addAction" value="/question/${Exam_Id}/add"></c:url>
-			<c:url var="addAction1" value="/updateQuestion"></c:url>
-			<form:form action="${addAction},${addAction1}" method="post"
+			
+			<form:form action="${addAction}" method="post"
 				modelAttribute="questions">
 				<c:if test="${!empty questions.question}">
 					<div class="form-group row">
@@ -123,8 +123,8 @@
 									<td>${question.option4}</td>
 									<td>${question.answer}</td>
 									<td><a
-										href="<c:url value='/editQuestion/${question.question_Id}' />"><button>Edit</button></a>
-										<a href="<c:url value='/deleteQuestion/${question.question_Id}' />"><button>Delete</button></a></td>
+										href="<c:url value='/question/${Exam_Id}/editQuestion/${question.question_Id}' />"><button>Edit</button></a>
+										<a href="<c:url value='/question/${Exam_Id}/deleteQuestion/${question.question_Id}' />"><button>Delete</button></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
