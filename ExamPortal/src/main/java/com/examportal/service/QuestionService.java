@@ -30,4 +30,9 @@ public class QuestionService {
 	public void deleteQuestionById(int questionId) {
 		questionRepository.deleteById(questionId);
 	}
+	
+	public List<Questions> listQuestionsbyExamId(int examId) {
+		return questionRepository.findByExam_Id(examId);
+	}
+	
 }

@@ -27,11 +27,11 @@ public class QuestionController {
 	@Autowired
 	private ExamService examService;
 
-	@RequestMapping(value = {"/question/{Exam_Id}","/listquestion"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/question/{Exam_Id}"}, method = RequestMethod.GET)
 
 	public ModelAndView ListQestion(ModelAndView model,@PathVariable("Exam_Id") int Exam_Id) {
 		System.out.println("Exam id :"+Exam_Id);
-		List<Questions> listOfQuestion = questionService.listAllQuestions();
+		List<Questions> listOfQuestion = questionService.listQuestionsbyExamId(Exam_Id);
 		Questions questions=new Questions();
 		model.addObject("questions",questions);
 		model.addObject("listOfQuestion", listOfQuestion);
