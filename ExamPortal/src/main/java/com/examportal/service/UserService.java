@@ -31,15 +31,15 @@ public class UserService {
     }
   
 	public User findByUsername(String username) {
-		return repo.getUserByUsername(username);
+		return repo.findByUser_Name(username);
 	}
      
     public User get(long id) {
-        return repo.findById(id).get();
+        return repo.findByUser_Id(id);
     }
      
     public void delete(long id) {
-        repo.deleteById(id);
+        repo.deleteByUser_Id(id);
     }
 
 }

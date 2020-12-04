@@ -32,7 +32,7 @@ public class MyUserDetails implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return user.getUsername();
+		return user.getUserIdentity().getUser_Name();
 	}
 
 	@Override
@@ -59,14 +59,8 @@ public class MyUserDetails implements UserDetails {
 		return true;
 	}
 
-
-
-	public String getFullName() {
-		return this.user.getUsername();
-	}
-
 	public Long Id() {
-		return this.user.getId();
+		return this.user.getUserIdentity().getUser_Id();
 	}
 
 }

@@ -29,20 +29,6 @@ public class ExamController {
 	@Autowired
 	private UserService userService;
 
-	//@RequestMapping(value = "/Exam", method = RequestMethod.GET)
-	//	public ModelAndView ListOfExam(ModelAndView model) {
-	//		List<Exam> listOfExam = examService.listAllExams();
-	//		Exam exam=new Exam();
-	//		User user=new User();
-	//		model.addObject("exam",exam);
-	//		model.addObject("user",user);
-	//		model.addObject("listOfExam", listOfExam);
-	//		model.setViewName("Exam");
-	//		return model;
-	//	}
-
-
-
 	@RequestMapping(value="/Exam")
 	public String viewHomePage(@AuthenticationPrincipal MyUserDetails userDetails, Model model) {
 		Long id = userDetails.Id();
@@ -76,25 +62,7 @@ public class ExamController {
 		examService.saveExam(exam);
 		return "redirect:/Exam";
 	}
-
-	//@RequestMapping(value= "/Exam/add/{id}", method = RequestMethod.POST)
-	//	public String addExam (@ModelAttribute("exam") Exam exam,@PathVariable(name = "id") int id,@Param("exam_Name")String exam_Name){
-	//		if(exam.getExam_Id() == 0){
-	//			System.out.println("going");
-	//			User user = userService.get(id);
-	////			exam.setExam_Id(Exam_Id);
-	//			exam.setExam_Name(exam_Name);
-	//			exam.setUser(user);
-	//			examService.saveExam(exam);		
-	//		}
-	//		else
-	//		{
-	//			System.out.println("not going");
-	//			examService.saveExam(exam);
-	//		}
-	//		return "redirect:/Exam";
-	//	}
-	//	
+	
 	@RequestMapping("/deleteExam/{Exam_Id}")
 	public String deleteExam(@PathVariable("Exam_Id") int Exam_Id){
 		examService.deleteByExamId(Exam_Id);

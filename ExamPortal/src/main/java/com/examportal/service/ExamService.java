@@ -36,7 +36,7 @@ public class ExamService {
 	}
 	
 	public List<Exam> getExamByUser_Id(long userId) {
-		List<Exam> exam=examRepository.findByUser_Id(userId);
+		List<Exam> exam=examRepository.findByUserUserIdentityUser_id(userId);
 		return exam;
 
 	}

@@ -28,15 +28,15 @@
 			</thead>
 			<tbody>
 				<tr th:each="list : ${list}">
-					<td th:text="${list.id}">Product ID</td>
-					<td th:text="${list.username}">Name</td>
+					<td th:text="${list.userIdentity.user_Id}">User ID</td>
+					<td th:text="${list.userIdentity.user_Name}">Name</td>
 					<td th:text="${list.role}">role</td>
 
 					<td sec:authorize="hasRole('ADMIN')"><a
-						th:href="@{'/edit/' + ${list.id}}">Edit</a> &nbsp;&nbsp;&nbsp; <a
-						th:href="@{'/delete/' + ${list.id}}">Delete</a>
+						th:href="@{'/edit/' + ${list.userIdentity.user_Id}}">Edit</a> &nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/delete/' + ${list.userIdentity.user_Id}}">Delete</a>
 						<a th:href="@{'/Exam/'}">Add Exam</a>
-						<a th:href="@{'/question/'}">Add Question</a></td>
+						
 				</tr>
 			</tbody>
 		</table>

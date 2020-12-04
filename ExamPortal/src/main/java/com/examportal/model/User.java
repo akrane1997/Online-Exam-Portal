@@ -5,10 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
  
@@ -16,31 +19,45 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User {
  
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
- 
-    private String username;
+	@EmbeddedId
+	private UserIdentity userIdentity;
     private String password;
     private String role;
     private String enabled;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Exam> exam=new ArrayList<Exam>();
-   
     
-	public Long getId() {
-		return id;
+   
+	public User() {
+		super();
 	}
-	public void setId(Long id) {
-		this.id = id;
+	
+	public User(UserIdentity userIdentity, String password, String role, String enabled, List<Exam> exam) {
+		super();
+		this.userIdentity = userIdentity;
+		this.password = password;
+		this.role = role;
+		this.enabled = enabled;
+		this.exam = exam;
 	}
-	public String getUsername() {
-		return username;
+	
+	
+	public UserIdentity getUserIdentity() {
+		return userIdentity;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+
+	public void setUserIdentity(UserIdentity userIdentity) {
+		this.userIdentity = userIdentity;
 	}
+
+	public List<Exam> getExam() {
+		return exam;
+	}
+
+	public void setExam(List<Exam> exam) {
+		this.exam = exam;
+	}
+
 	public String getPassword() {
 		return password;
 	}
