@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.examportal.model.User;
-import com.examportal.model.UserIdentity;
 import com.examportal.repo.UserRepository;
 import com.examportal.service.UserService;
 
@@ -42,10 +41,10 @@ public class UserController {
 
 	@RequestMapping(value = "/registration_done", method = RequestMethod.POST)
 	public String registration( @Param("username") String username, @Param("role") String role,@Param("password") String password) {
-		UserIdentity userIdentity=new UserIdentity();
+//		UserIdentity userIdentity=new UserIdentity();
 		User user = new User();
-		userIdentity.setUser_Name(username);
-		user.setUserIdentity(userIdentity);;
+	
+		user.setUser_Name(username);;
 		user.setRole(role);
 		user.setPassword(passwordEncoder.encode(password));
 		repo.save(user);
@@ -104,7 +103,7 @@ public class UserController {
 	}
 	@RequestMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable(name = "id") int id) {
-//		service.delete(id);
+		service.delete(id);
 		return "redirect:/";       
 	}
 }

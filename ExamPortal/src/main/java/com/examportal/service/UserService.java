@@ -35,11 +35,15 @@ public class UserService {
 	}
      
     public User get(long id) {
-        return repo.findByUser_Id(id);
+        return repo.findById(id).get();
     }
      
     public void delete(long id) {
-        repo.deleteByUser_Id(id);
+        repo.deleteById(id);
     }
+    
+//    List <User> listOfCandidate(long exam_Id) {
+//		return repo.findByUser_IdWhereExam_Id(exam_Id);
+//	}
 
 }

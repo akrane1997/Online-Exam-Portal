@@ -4,50 +4,81 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
- 
+
 @Entity
 @Table(name = "users")
 public class User {
- 
-	@EmbeddedId
-	private UserIdentity userIdentity;
-    private String password;
-    private String role;
-    private String enabled;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long user_Id;
+	private String user_Name;
+	private String password;
+	private String role;
+	private String enabled="1";
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Exam> exam=new ArrayList<Exam>();
-    
-   
+
+	//	
+	//	@JoinTable(
+	//			name = "Exam_user", 
+	//			joinColumns = { @JoinColumn(name = "user_Id")}, 
+	//			inverseJoinColumns = { @JoinColumn(name = "exam_Id") }
+	//			)
+	//	private Exam exam1;
+
+//	@OneToMany(mappedBy = "user1", cascade = CascadeType.ALL)
+//	private List<Exam> exam1=new ArrayList<Exam>();
+	@ManyToOne
+	@JoinTable(
+			name = "Exam_user", 
+			joinColumns = { @JoinColumn(name = "user_Id")}, 
+			inverseJoinColumns = { @JoinColumn(name = "exam_Id") }
+			)
+	private Exam Exam1;
+
+
 	public User() {
 		super();
 	}
-	
-	public User(UserIdentity userIdentity, String password, String role, String enabled, List<Exam> exam) {
+
+
+	public User(long user_Id, String user_Name, String password, String role, String enabled, List<Exam> exam,
+			Exam exam1) {
 		super();
-		this.userIdentity = userIdentity;
+		this.user_Id = user_Id;
+		this.user_Name = user_Name;
 		this.password = password;
 		this.role = role;
 		this.enabled = enabled;
 		this.exam = exam;
-	}
-	
-	
-	public UserIdentity getUserIdentity() {
-		return userIdentity;
+		Exam1 = exam1;
 	}
 
-	public void setUserIdentity(UserIdentity userIdentity) {
-		this.userIdentity = userIdentity;
+
+	public long getUser_Id() {
+		return user_Id;
+	}
+
+	public void setUser_Id(long user_Id) {
+		this.user_Id = user_Id;
+	}
+
+	public String getUser_Name() {
+		return user_Name;
+	}
+
+	public void setUser_Name(String user_Name) {
+		this.user_Name = user_Name;
 	}
 
 	public List<Exam> getExam() {
@@ -76,8 +107,18 @@ public class User {
 	public void setEnabled(String enabled) {
 		this.enabled = enabled;
 	}
+
+	public Exam getExam1() {
+		return Exam1;
+	}
+
+	public void setExam1(Exam exam1) {
+		Exam1 = exam1;
+	}
+
+
+
 	
 	
- 
-   
+
 }

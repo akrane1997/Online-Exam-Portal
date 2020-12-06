@@ -9,43 +9,50 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Exam {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Exam_Id;
 	private String Exam_Name;
+	
 	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
 	private List<Questions> question=new ArrayList<Questions>();
+	
 	@ManyToOne
 	@JoinColumn(name="user_Id")
-	@JoinColumn(name="user_Name")
 	private User user;
+
+//	@ManyToOne
+//	@JoinTable(
+//			name = "Exam_user", 
+//			joinColumns = { @JoinColumn(name = "exam_Id")}, 
+//			inverseJoinColumns = { @JoinColumn(name = "user_Id") }
+//			)
+//	private User user1;
 	
+	@OneToMany(mappedBy = "Exam1", cascade = CascadeType.ALL)
+	private List<User> user1=new ArrayList<User>();
 	public Exam() {
 		super();
 	}
 
-	public Exam(int exam_Id, String exam_Name, List<Questions> question) {
-		super();
-		Exam_Id = exam_Id;
-		Exam_Name = exam_Name;
-		this.question = question;
-	}
-	
-	
-	public Exam(int exam_Id, String exam_Name, List<Questions> question, User user) {
+
+	public Exam(int exam_Id, String exam_Name, List<Questions> question, User user, List<User> user1) {
 		super();
 		Exam_Id = exam_Id;
 		Exam_Name = exam_Name;
 		this.question = question;
 		this.user = user;
+		this.user1 = user1;
 	}
+
 
 	public int getExam_Id() {
 		return Exam_Id;
@@ -73,7 +80,22 @@ public class Exam {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+
+
+	public List<User> getUser1() {
+		return user1;
+	}
+
+
+
+	public void setUser1(List<User> user1) {
+		this.user1 = user1;
+	}
+
+
 	
+
 	
-	
+
 }

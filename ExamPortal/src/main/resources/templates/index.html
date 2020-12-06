@@ -28,13 +28,13 @@
 			</thead>
 			<tbody>
 				<tr th:each="list : ${list}">
-					<td th:text="${list.userIdentity.user_Id}">User ID</td>
-					<td th:text="${list.userIdentity.user_Name}">Name</td>
+					<td th:text="${list.user_Id}">User ID</td>
+					<td th:text="${list.user_Name}">Name</td>
 					<td th:text="${list.role}">role</td>
 
 					<td sec:authorize="hasRole('ADMIN')"><a
-						th:href="@{'/edit/' + ${list.userIdentity.user_Id}}">Edit</a> &nbsp;&nbsp;&nbsp; <a
-						th:href="@{'/delete/' + ${list.userIdentity.user_Id}}">Delete</a>
+						th:href="@{'/edit/' + ${list.user_Id}}">Edit</a> &nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/delete/' + ${list.user_Id}}">Delete</a>
 						<a th:href="@{'/Exam/'}">Add Exam</a>
 						
 				</tr>
