@@ -1,12 +1,13 @@
 package com.examportal.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.examportal.details.MyUserDetails;
 import com.examportal.model.Exam;
+import com.examportal.model.Exam_user;
 import com.examportal.model.User;
+import com.examportal.repo.UserRepository;
 import com.examportal.service.ExamService;
+import com.examportal.service.Exam_UserService;
 import com.examportal.service.UserService;
 
 @Controller
@@ -29,14 +33,20 @@ public class ExamController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	UserRepository repo;
+
+	@Autowired
+	Exam_UserService exam_UserService;
+
 	@RequestMapping(value="/Exam")
 	public String viewHomePage(@AuthenticationPrincipal MyUserDetails userDetails, Model model) {
 		Long id = userDetails.Id();
 
 		List<Exam> list = examService.getExamByUser_Id(id);
-		
+
 		model.addAttribute("list", list);
-	
+
 		return "/exampage";
 	}
 
@@ -62,7 +72,7 @@ public class ExamController {
 		examService.saveExam(exam);
 		return "redirect:/Exam";
 	}
-	
+
 	@RequestMapping("/deleteExam/{Exam_Id}")
 	public String deleteExam(@PathVariable("Exam_Id") int Exam_Id){
 		examService.deleteByExamId(Exam_Id);
@@ -75,44 +85,82 @@ public class ExamController {
 		Exam exam=examService.getExamByExamId(Exam_Id);
 		ModelAndView mav = new ModelAndView("/edit_exam");
 		mav.addObject("exam",exam);
-		
+
 		return mav;
 	}
 
 
 	@RequestMapping(value = "/ExamList", method = RequestMethod.GET)
 	public String getListByExamName(@ModelAttribute("exam") Exam exam,Model mv) {
-		
+
 		mv.addAttribute("exam",exam);
 		String Examname=exam.getExam_Name();
 		System.out.println(Examname);
 		List<Exam> Elist = examService.getExamByExamName(Examname);
 		mv.addAttribute("Elist", Elist);
-	
+
 		return "/searchexam";
 	}
-	
+
 	@RequestMapping("/addCandidate/{Exam_Id}")
 	public String addCandidtae(Model model,@PathVariable("Exam_Id") int Exam_Id) {
-		
+
 		User user=new User();
-		
+
 
 		//exam.setUser(user);
 		model.addAttribute("user", user);
-//		model.addAttribute("listOfExams", listOfExams);
+		//		model.addAttribute("listOfExams", listOfExams);
+		
+		//long l=new Long(Exam_Id);
+		
+//		List<Exam_user> list = exam_UserService.getExam_userByexam_Id(l);
+//
+//		model.addAttribute("list", list);
 
 		return "AddCandidate";
 	}
-	
+
 	@RequestMapping(value = "/addCandidate/{Exam_Id}/saveCandidate", method = RequestMethod.POST)
-	public String saveCandidate(@ModelAttribute("user") User user,@PathVariable("Exam_Id") long Exam_Id) {
+	public String saveCandidate(@ModelAttribute("user") User user,@PathVariable("Exam_Id") long Exam_Id,@Param("Id") long user_Id) {
 		System.out.println("exam Id: "+Exam_Id);
 		Exam exam=new Exam();
-		
+		Exam_user examuser=new Exam_user();
+
+		//exam.setExam_Id(Exam_Id);
 		exam=examService.getExamByExamId(Exam_Id);
-		user.setExam1(exam);
-		userService.save(user);
-		return "redirect:/Exam";
+		user=userService.get(user_Id);
+
+		examuser.setUser(user);
+		examuser.setExam(exam);
+		System.out.println(user.getUser_Id());
+		exam_UserService.saveExam_user(examuser);
+		//user.setExam1(exam);
+		//		repo.save(user);
+		//		Optional<User> user2=repo.findById(user_Id);
+		//		User user1 = userService.
+		
+		
+
+		return "redirect:/Examuser/{Exam_Id}";
 	}
+
+	@RequestMapping(value="/Examuser/{Exam_Id}")
+	public String viewExam_userList( Model model,@PathVariable("Exam_Id") int Exam_Id) {
+		System.out.println("Examuserlist examid:"+Exam_Id);
+
+		//ModelAndView mv=new ModelAndView("showCandidate");
+		List<Exam_user> list = exam_UserService.getExam_userByexam_Id(Exam_Id);
+
+		model.addAttribute("list", list);
+
+	return "showCandidate";
+	}
+	
+	@RequestMapping("/Examuser/{Exam_Id}/delete/{id}")
+	public String deletecadidate(@PathVariable("Exam_Id") int Exam_Id,@PathVariable("id") long id){
+		exam_UserService.deletecandidatebyid(id);
+		return "redirect:/Examuser/{Exam_Id}";
+	}
+
 }

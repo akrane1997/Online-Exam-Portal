@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,15 +34,18 @@ public class User {
 	//			)
 	//	private Exam exam1;
 
-//	@OneToMany(mappedBy = "user1", cascade = CascadeType.ALL)
-//	private List<Exam> exam1=new ArrayList<Exam>();
-	@ManyToOne
-	@JoinTable(
-			name = "Exam_user", 
-			joinColumns = { @JoinColumn(name = "user_Id")}, 
-			inverseJoinColumns = { @JoinColumn(name = "exam_Id") }
-			)
-	private Exam Exam1;
+	//	@OneToMany(mappedBy = "user1", cascade = CascadeType.ALL)
+	//	private List<Exam> exam1=new ArrayList<Exam>();
+	//	@ManyToOne
+	//	@JoinTable(
+	//			name = "Exam_user", 
+	//			joinColumns = { @JoinColumn(name = "user_Id")}, 
+	//			inverseJoinColumns = { @JoinColumn(name = "exam_Id") }
+	//			)
+	//	private Exam Exam1;
+
+	@ManyToMany(mappedBy = "user")
+	List<Exam_user> examuser;
 
 
 	public User() {
@@ -52,8 +53,10 @@ public class User {
 	}
 
 
+
+
 	public User(long user_Id, String user_Name, String password, String role, String enabled, List<Exam> exam,
-			Exam exam1) {
+			List<Exam_user> examuser) {
 		super();
 		this.user_Id = user_Id;
 		this.user_Name = user_Name;
@@ -61,8 +64,10 @@ public class User {
 		this.role = role;
 		this.enabled = enabled;
 		this.exam = exam;
-		Exam1 = exam1;
+		this.examuser = examuser;
 	}
+
+
 
 
 	public long getUser_Id() {
@@ -108,17 +113,25 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public Exam getExam1() {
-		return Exam1;
+
+
+
+	public List<Exam_user> getExamuser() {
+		return examuser;
 	}
 
-	public void setExam1(Exam exam1) {
-		Exam1 = exam1;
+
+
+
+	public void setExamuser(List<Exam_user> examuser) {
+		this.examuser = examuser;
 	}
 
 
 
-	
-	
+
+
+
+
 
 }

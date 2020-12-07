@@ -13,4 +13,6 @@ public interface ExamRepository extends JpaRepository<Exam, Integer> {
 	@Query("select e from Exam e where e.Exam_Name = ?1")
 	List<Exam> findByExam_Name(String Exam_Name);
 	
+	
+	
 }
