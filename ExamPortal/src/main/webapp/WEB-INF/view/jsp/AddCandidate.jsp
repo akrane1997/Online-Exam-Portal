@@ -24,10 +24,9 @@
 			<form:form action="${addAction}" method="post" modelAttribute="user">
 				<div class="form-group row">
 					<form:label path="user_Id" name="user_Id"
-						class="col-sm-2 col-form-label">User Id
-							</</form:label>
+						class="col-sm-2 col-form-label">User Id :</form:label>
 					<div class="col-sm-10">
-						<form:input class="form-control" name="Id" path="user_Id"
+						<form:input class="form-control" name="user_Id" path="user_Id"
 							placeholder="Enter User Id of Candidate " required="true"></form:input>
 					</div>
 				</div>
@@ -39,16 +38,16 @@
 				</div>
 			</form:form>
 
-			<%-- <div class="container bs-example" align="center">
-
+			<div class="container bs-example" align="center">
 				<c:if test="${!empty list}">
 					<h2 class="heading">Exam_User List</h2>
 					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">ExamId</th>
 								<th scope="col">UserId</th>
+								<th scope="col">ExamId</th>
+
 
 								<th scope="col">Action</th>
 							</tr>
@@ -56,21 +55,23 @@
 						<tbody>
 							<c:forEach var="list" items="${list}">
 								<tr>
-									<td>${list.Id}</td>
-									<td>${list.exam.Exam_Id}</td>
+									<td>${list.id}</td>
 									<td>${list.user.user_Id}</td>
-									
+									<td>${list.exam.exam_Id}</td>
+
+
+									<%-- <td><a
+										href="<c:url value='/candidate/${Exam_Id}/editCandidate/${exam.exam_Id}' />"><button>Edit</button></a>--%>
+
 									<td><a
-										href="<c:url value='/candidate/${Exam_Id}/editCandidate/${exam.exam_Id}' />"><button>Edit</button></a>
-										<a
-										href="<c:url value='/candidate/${Exam_Id}/deleteCandidate/${exam.exam_Id}' />"><button>Delete</button></a></td>
+										href="<c:url value='/addCandidate/${Exam_Id}/delete/${list.id}' />"><button>Delete</button></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</c:if>
-			</div> --%>
-			<br> <a href="/Examuser/${Exam_Id}"><button>show List</button>e </a> <br /> 
+			</div>
+			<%-- 			<br> <a href="/Examuser/${Exam_Id}"><button>show List</button>e </a> <br />  --%>
 			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 				integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 				crossorigin="anonymous"></script>

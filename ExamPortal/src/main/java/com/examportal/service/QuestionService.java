@@ -35,4 +35,12 @@ public class QuestionService {
 		return questionRepository.findByExam_Id(examId);
 	}
 	
+	public String getAnswer(int questionId) {
+		Questions question=questionRepository.findByAnswer(questionId);
+		String answer=question.getAnswer();
+		return answer;
+	}
+	
+	
+	
 }

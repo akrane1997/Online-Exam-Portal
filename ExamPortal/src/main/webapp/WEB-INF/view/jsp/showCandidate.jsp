@@ -55,7 +55,7 @@
 				</c:if>
 			</div>
 			
-			<br> <a href="/addCandidate/${Exam_Id}"><button>add candidat</button>e </a> <br /> <br />
+			<br> <a href="/addCandidate/${Exam_Id}"><button>add candidate</button> </a> <br /> <br />
 			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 				integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 				crossorigin="anonymous"></script>

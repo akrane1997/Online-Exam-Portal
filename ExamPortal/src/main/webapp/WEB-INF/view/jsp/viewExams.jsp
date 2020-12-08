@@ -19,21 +19,14 @@
 	<div class="container " align="center">
 		<div class="bs-example">
 			<h2 class="heading">show exams</h2>
-			<c:url var="addAction" value="/showExams"></c:url>
-
-
-
-			<div class="container bs-example" align="center">
-
-				<c:if test="${!empty list}">
+			<div class="container bs-example" align="center">		
 					<h2 class="heading">Exam_User List</h2>
 					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">ExamId</th>
-
-
+								<th scope="col">Exam Name</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
@@ -42,21 +35,13 @@
 								<tr>
 									<td>${list.id}</td>
 									<td>${list.exam.exam_Id}</td>
-
-
-									<%-- <td><a
-										href="<c:url value='/candidate/${Exam_Id}/editCandidate/${exam.exam_Id}' />"><button>Edit</button></a>--%>
-
-									<!-- 									<td>	<a href="<c:url value='/Examuser/${Exam_Id}/delete/${list.id}' />"><button>Delete</button></a></td> -->
+									<td>${list.exam.exam_Name}</td>
+									<td><a href="<c:url value='/showExams/${list.exam.exam_Id}' />"><button>Start Exam</button></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-				</c:if>
 			</div>
-
-			<br> <a href="/addCandidate/${Exam_Id}"><button>add
-					candidat</button>e </a> <br /> <br />
 			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 				integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 				crossorigin="anonymous"></script>
@@ -68,4 +53,4 @@
 	</div>
 
 </body>
-</html>
+</html> 

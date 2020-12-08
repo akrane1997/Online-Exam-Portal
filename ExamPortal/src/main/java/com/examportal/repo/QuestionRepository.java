@@ -12,4 +12,7 @@ public interface QuestionRepository extends JpaRepository<Questions, Integer> {
 
 	@Query("select e from Questions e where e.exam.Exam_Id= :examId")
 	List<Questions> findByExam_Id(int examId);
+	
+	@Query("select e from Questions e where e.question_Id= :question_Id")
+	public Questions findByAnswer(int question_Id);
 }

@@ -7,7 +7,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.examportal.model.Exam_user;
 import com.examportal.model.User;
+import com.examportal.repo.Exam_UserRepo;
 import com.examportal.repo.UserRepository;
 
 @Service
@@ -18,6 +20,8 @@ public class UserService {
 	private UserRepository repo;
 	@Autowired(required = true)
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	private Exam_UserRepo exam_UserRepo;
 	
 	
 	
@@ -41,6 +45,7 @@ public class UserService {
     public void delete(long id) {
         repo.deleteById(id);
     }
+    
     
 //    List <User> listOfCandidate(long exam_Id) {
 //		return repo.findByUser_IdWhereExam_Id(exam_Id);

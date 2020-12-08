@@ -3,6 +3,8 @@ package com.examportal.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -68,7 +70,7 @@ public class QuestionController {
 	//		}
 
 	@RequestMapping(value = "/question/{Exam_Id}/savequestion", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("questions") Questions questions,@PathVariable("Exam_Id") String Exam_Id)
+	public String saveQuestion(@ModelAttribute("questions") Questions questions,@PathVariable("Exam_Id") String Exam_Id)
 	{
 		long num = Long.parseLong(Exam_Id);
 
@@ -99,7 +101,7 @@ public class QuestionController {
 	//	}
 
 	@RequestMapping("/question/{Exam_Id}/editQuestion/{question_Id}")
-	public ModelAndView showEditProductPage(@PathVariable(name = "question_Id") int id,@PathVariable("Exam_Id") Long Exam_Id) {
+	public ModelAndView showEditQuestion(@PathVariable(name = "question_Id") int id,@PathVariable("Exam_Id") Long Exam_Id) {
 		System.out.println("Exam id show edit page:"+Exam_Id);
 
 		Exam exam=examService.getExamByExamId(Exam_Id);
@@ -111,4 +113,103 @@ public class QuestionController {
 
 		return mav;
 	}
+
+	//	@RequestMapping(value ="/submitAnswer" ,method=RequestMethod.POST)
+	//	public String submitAnswer(/* HttpServletRequest request, *//* @Param("question_Id") String question_Id */) {
+	//		System.out.println("In: ");
+	//		int score =0;
+	////		String [] questionIds =request.getParameterValues("question_Id");
+	////		for(String question_Id : questionIds)
+	////		{
+	////			System.out.println("Question Ids: "+question_Id);
+	////			String answerIdCorrect = questionService.getAnswer(Integer.parseInt(question_Id.trim()));
+	////			System.out.println("Question object Ids: "+answerIdCorrect);
+	////			if(answerIdCorrect.equals(request.getParameter("question_"+question_Id)))
+	////			{
+	////				System.out.println("corect answer: "+answerIdCorrect.trim());
+	////				score++;
+	////			}
+	////		}
+	////		request.setAttribute("score", score);
+	//		return "Result";
+	//	}
+
+	@RequestMapping(value ="/submitAnswer" ,method=RequestMethod.POST)
+	public String submitAnswer(HttpServletRequest request)
+	{
+
+
+		System.out.println("In");
+		int score=0;
+		String [] questionIds =request.getParameterValues("question_Id".trim());
+		for(String question_Id : questionIds)
+		{
+			System.out.println("Question Ids: "+question_Id);
+			String answerIdCorrect = questionService.getAnswer(Integer.parseInt(question_Id.trim()));
+			Questions q=questionService.getQuestionById(Integer.parseInt(question_Id.trim()));
+			System.out.println("Question object Ids: "+answerIdCorrect);
+			String option=request.getParameter("option_"+question_Id.trim());
+			System.out.println("option :"+option);
+			//			if(answerIdCorrect==(request.getParameter("option_"+question_Id)))
+			//			{
+			//				System.out.println("correct answer: "+answerIdCorrect);
+			//				score++;
+			//			}
+			System.out.println("option :"+q.getOption1());
+			if("option1".equals(option))
+			{
+				System.out.println("jatoy if1");
+				
+				if(answerIdCorrect.equals(q.getOption1()))
+				{
+					System.out.println("Question object Ids 1: "+answerIdCorrect);
+					System.out.println("correct option1");
+					score++;
+				}
+
+			}
+			else if("option2".equals(option))
+			{
+				System.out.println("jatoy if2");
+				if(answerIdCorrect.equals(q.getOption2()))
+				{
+					System.out.println("Question object Ids 2: "+answerIdCorrect);
+					System.out.println("correct option2");
+					score++;
+				}
+
+			} 
+			else if("option3".equals(option))
+			{
+				System.out.println("jatoy if3");
+				if(answerIdCorrect.equals(q.getOption3()))
+				{
+					System.out.println("Question object Ids 3: "+answerIdCorrect);
+					System.out.println("correct option3");
+					score++;
+				}
+
+			}
+			else if("option4".equals(option))
+			{
+				System.out.println("jatoy if4");
+				if(answerIdCorrect.equals(q.getOption4()))
+				{
+					System.out.println("Question object Ids 4: "+answerIdCorrect);
+					System.out.println("correct option4");
+					score++;
+				}
+
+			}
+			else {
+				System.out.println("option not available");
+			}
+		}
+		request.setAttribute("score", score);
+		return"Result";
+	}
 }
+
+
+
+
