@@ -26,6 +26,12 @@ public class Exam_UserService {
 
 	}
 	
+	public List<Exam_user> getExamIdbyuserId(long id) {
+		List<Exam_user> exam=exam_UserRepo.showExamId(id);
+		return exam;
+
+	}
+	
 	public void deletecandidatebyid(long id)
 	{
 		exam_UserRepo.deleteById(id);

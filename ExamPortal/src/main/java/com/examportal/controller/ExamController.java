@@ -162,5 +162,19 @@ public class ExamController {
 		exam_UserService.deletecandidatebyid(id);
 		return "redirect:/Examuser/{Exam_Id}";
 	}
+	
+	@RequestMapping(value="/showExams")
+	public String viewexamsforstudent(@AuthenticationPrincipal MyUserDetails userDetails, Model model) {
+		Long id = userDetails.Id();
+		
+		List<Exam_user> list = exam_UserService.getExamIdbyuserId(id);
+		//List<Exam> list = examService.getExamByUser_Id(id);
+		System.out.println(id);
+		model.addAttribute("list", list);
+		System.out.println(id);
+		
+
+		return "viewExams";
+	}
 
 }
