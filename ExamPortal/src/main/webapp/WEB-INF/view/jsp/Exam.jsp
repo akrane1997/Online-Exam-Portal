@@ -71,6 +71,7 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
+								<th scope="col">Date</th>
 								<th scope="col">Exam Id</th>
 								<th scope="col">Exam Name</th>
 								<th scope="col">Action</th>
@@ -79,6 +80,7 @@
 						<tbody>
 							<c:forEach var="exam" items="${listOfExam}">
 								<tr>
+									<td>${exam.startDate}</td>
 									<td>${exam.exam_Id}</td>
 									<td>${exam.exam_Name}</td>
 									<td><a href="<c:url value='/editExam/${exam.exam_Id}' />"><button>Edit</button></a>

@@ -1,9 +1,13 @@
 package com.examportal.model;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.Generated;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenerationTime;
 
 @Entity
 public class Exam {
@@ -20,6 +28,18 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Exam_Id;
 	private String Exam_Name;
+	
+	//@Temporal(TemporalType.DATE)
+
+	@CreationTimestamp
+	//@Generated(GenerationTime.ALWAYS)
+	@Temporal(javax.persistence.TemporalType.DATE)
+	@Column(name = "date")
+	private Date startDate= new java.sql.Date(new java.util.Date().getTime());
+	
+	private int setTime= 0 ;
+	
+
 	
 	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
 	private List<Questions> question=new ArrayList<Questions>();
@@ -42,13 +62,12 @@ public class Exam {
     @ManyToMany(mappedBy = "exam")
     List<Exam_user> examuser;
 	
+    @ManyToMany(mappedBy = "exam")
+    List<Score> examuserscore;
+    
 	public Exam() {
 		super();
 	}
-
-
-
-
 
 	public Exam(int exam_Id, String exam_Name, List<Questions> question, User user, List<Exam_user> examuser) {
 		super();
@@ -57,6 +76,51 @@ public class Exam {
 		this.question = question;
 		this.user = user;
 		this.examuser = examuser;
+	}
+
+	public Exam(int exam_Id, String exam_Name, Date startDate, List<Questions> question, User user,
+			List<Exam_user> examuser, List<Score> examuserscore) {
+		super();
+		Exam_Id = exam_Id;
+		Exam_Name = exam_Name;
+		this.startDate = startDate;
+		this.question = question;
+		this.user = user;
+		this.examuser = examuser;
+		this.examuserscore = examuserscore;
+	}
+
+	public int getSetTime() {
+		return setTime;
+	}
+
+	public void setSetTime(int setTime) {
+		this.setTime = setTime;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+
+
+	public List<Score> getExamuserscore() {
+		return examuserscore;
+	}
+
+
+
+
+
+	public void setExamuserscore(List<Score> examuserscore) {
+		this.examuserscore = examuserscore;
 	}
 
 
@@ -97,9 +161,6 @@ public class Exam {
 	public List<Exam_user> getExamuser() {
 		return examuser;
 	}
-
-
-
 
 
 	public void setExamuser(List<Exam_user> examuser) {

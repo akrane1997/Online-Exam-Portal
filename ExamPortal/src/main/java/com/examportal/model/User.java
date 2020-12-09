@@ -46,6 +46,9 @@ public class User {
 
 	@ManyToMany(mappedBy = "user")
 	List<Exam_user> examuser;
+	
+	@ManyToMany(mappedBy = "user")
+	List<Score> examuserscore;
 
 
 	public User() {

@@ -30,6 +30,7 @@
 		<table border="1" cellpadding="10">
 			<thead>
 				<tr>
+					<th>Date</th>
 					<th>Exam ID</th>
 					<th>Exam Name</th>
 					<th>Actions</th>
@@ -37,14 +38,18 @@
 			</thead>
 			<tbody>
 				<tr th:each="list : ${list}">
+
+					<td th:text="${list.startDate}">ID</td>
 					<td th:text="${list.Exam_Id}">ID</td>
 					<td th:text="${list.Exam_Name}">Name</td>
 					<td><a th:href="@{'/editExam/' + ${list.Exam_Id}}">Edit</a>
 						&nbsp;&nbsp;&nbsp; <a
 						th:href="@{'/deleteExam/' + ${list.Exam_Id}}">Delete</a>
-						&nbsp;&nbsp;&nbsp; <a th:href="@{'/question/'+ ${list.Exam_Id}}">Add Question</a>
-						&nbsp;&nbsp;&nbsp; <a th:href="@{'/addCandidate/'+ ${list.Exam_Id}}">Add Candidate</a></td>
-
+						&nbsp;&nbsp;&nbsp; <a th:href="@{'/question/'+ ${list.Exam_Id}}">Add
+							Question</a> &nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/addCandidate/'+ ${list.Exam_Id}}">Add Candidate</a>
+						&nbsp;&nbsp;&nbsp; <a th:href="@{'/showresult/'+ ${list.Exam_Id}}">view
+							Result</a></td>
 
 				</tr>
 			</tbody>

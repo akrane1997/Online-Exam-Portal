@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.examportal.details.MyUserDetails;
 import com.examportal.model.Exam;
 import com.examportal.model.Questions;
+import com.examportal.model.Score;
+import com.examportal.model.User;
 import com.examportal.service.ExamService;
 import com.examportal.service.QuestionService;
+import com.examportal.service.Scoreservice;
+import com.examportal.service.UserService;
 
 @Controller
 
@@ -28,6 +34,12 @@ public class QuestionController {
 
 	@Autowired
 	private ExamService examService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private Scoreservice scoreservice;
 
 	@RequestMapping(value = {"/question/{Exam_Id}"}, method = RequestMethod.GET)
 
@@ -134,11 +146,21 @@ public class QuestionController {
 	//		return "Result";
 	//	}
 
-	@RequestMapping(value ="/submitAnswer" ,method=RequestMethod.POST)
-	public String submitAnswer(HttpServletRequest request)
+	@RequestMapping(value ="/showExams/{Exam_Id}/submitAnswer" ,method=RequestMethod.POST)
+	public String submitAnswer(@AuthenticationPrincipal MyUserDetails userDetails,HttpServletRequest request,@PathVariable("Exam_Id") int Exam_Id)
 	{
-
-
+		Score result=new Score();
+		Long id = userDetails.Id();
+		System.out.println(id);
+		User user=userService.get(id);
+		System.out.println("score in :"+user);
+		Exam exam=examService.getExamByExamId(Exam_Id);
+		System.out.println("score in :"+exam);
+		
+		
+		
+		
+		System.out.println("submit answer examid :"+Exam_Id);
 		System.out.println("In");
 		int score=0;
 		String [] questionIds =request.getParameterValues("question_Id".trim());
@@ -205,9 +227,16 @@ public class QuestionController {
 				System.out.println("option not available");
 			}
 		}
+		result.setExam(exam);
+		result.setUser(user);
+		result.setScore(score);
+		
+		scoreservice.saveScore(result);
 		request.setAttribute("score", score);
-		return"Result";
+		return"redirect:/result";
 	}
+	
+	
 }
 
 

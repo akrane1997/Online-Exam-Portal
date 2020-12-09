@@ -40,7 +40,7 @@ public class ExamController {
 
 	@Autowired
 	Exam_UserService exam_UserService;
-	
+
 	@Autowired
 	private QuestionService questionService;
 
@@ -67,13 +67,20 @@ public class ExamController {
 	}
 
 	@RequestMapping(value = "/saveExam", method = RequestMethod.POST)
-	public String saveExam(@AuthenticationPrincipal MyUserDetails userDetails,@ModelAttribute("exam") Exam exam) {
+	public String saveExam(@AuthenticationPrincipal MyUserDetails userDetails,@ModelAttribute("exam") Exam exam,@Param("sss") int sss) {
 
 		Long id = userDetails.Id();
 		System.out.println(id);
 		User user=userService.get(id);
 		System.out.println(user);
 		exam.setUser(user);
+
+		System.out.println("time :"+sss);
+
+
+		int millis = sss * 60 * 1000;
+		exam.setSetTime(millis);
+
 		examService.saveExam(exam);
 		return "redirect:/Exam";
 	}
@@ -130,24 +137,24 @@ public class ExamController {
 		return "redirect:/addCandidate/{Exam_Id}";
 	}
 
-//	@RequestMapping(value="/Examuser/{Exam_Id}")
-//	public String viewExam_userList( Model model,@PathVariable("Exam_Id") int Exam_Id) {
-//		System.out.println("Examuserlist examid:"+Exam_Id);
-//
-//		//ModelAndView mv=new ModelAndView("showCandidate");
-//		List<Exam_user> list = exam_UserService.getExam_userByexam_Id(Exam_Id);
-//
-//		model.addAttribute("list", list);
-//
-//	return "redirect:/addCandidate/{Exam_Id}";
-//	}
-	
+	//	@RequestMapping(value="/Examuser/{Exam_Id}")
+	//	public String viewExam_userList( Model model,@PathVariable("Exam_Id") int Exam_Id) {
+	//		System.out.println("Examuserlist examid:"+Exam_Id);
+	//
+	//		//ModelAndView mv=new ModelAndView("showCandidate");
+	//		List<Exam_user> list = exam_UserService.getExam_userByexam_Id(Exam_Id);
+	//
+	//		model.addAttribute("list", list);
+	//
+	//	return "redirect:/addCandidate/{Exam_Id}";
+	//	}
+
 	@RequestMapping("/addCandidate/{Exam_Id}/delete/{id}")
 	public String deletecadidate(@PathVariable("Exam_Id") int Exam_Id,@PathVariable("id") long id){
 		exam_UserService.deletecandidatebyid(id);
 		return "redirect:/addCandidate/{Exam_Id}";
 	}
-	
+
 	@RequestMapping(value="/showExams")
 	public String viewexamsforstudent(@AuthenticationPrincipal MyUserDetails userDetails, Model model) {
 		Long id = userDetails.Id();
@@ -158,16 +165,19 @@ public class ExamController {
 		System.out.println(id);
 		return "ViewExams";
 	}
-	
+
 	@RequestMapping(value = "/showExams/{Exam_Id}", method = RequestMethod.GET)
 	public String getExamToStudent(@PathVariable("Exam_Id")int Exam_Id,Model model) {
-		List<Questions> listOfQuestion = questionService.listQuestionsbyExamId(Exam_Id);
 		
+		Exam exam=examService.getExamByExamId(Exam_Id);
+		exam.getSetTime();
+		List<Questions> listOfQuestion = questionService.listQuestionsbyExamId(Exam_Id);
+
 		model.addAttribute("listOfQuestion", listOfQuestion);
 
 		return "ShowExam";
 	}
-	
-	
+
+
 
 }

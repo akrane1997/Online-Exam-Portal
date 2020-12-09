@@ -19,28 +19,32 @@
 	<div class="container " align="center">
 		<div class="bs-example">
 			<h2 class="heading">show exams</h2>
-			<div class="container bs-example" align="center">		
-					<h2 class="heading">Exam_User List</h2>
-					<table class="table table-bordered">
-						<thead>
+			<div class="container bs-example" align="center">
+				<h2 class="heading">Exam_User List</h2>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							
+							<th scope="col">ExamId</th>
+							<th scope="col">Exam Name</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="list" items="${list}">
 							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">ExamId</th>
-								<th scope="col">Exam Name</th>
-								<th scope="col">Action</th>
+								
+								<td>${list.exam.startDate}</td>
+								<td>${list.exam.exam_Id}</td>
+								<td>${list.exam.exam_Name}</td>
+								<td><a
+									href="<c:url value='/showExams/${list.exam.exam_Id}' />"><button>Start
+											Exam</button></a></td>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="list" items="${list}">
-								<tr>
-									<td>${list.id}</td>
-									<td>${list.exam.exam_Id}</td>
-									<td>${list.exam.exam_Name}</td>
-									<td><a href="<c:url value='/showExams/${list.exam.exam_Id}' />"><button>Start Exam</button></a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 				integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -53,4 +57,4 @@
 	</div>
 
 </body>
-</html> 
+</html>
