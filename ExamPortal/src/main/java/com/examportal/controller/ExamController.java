@@ -78,8 +78,8 @@ public class ExamController {
 		System.out.println("time :"+sss);
 
 
-		int millis = sss * 60 * 1000;
-		exam.setSetTime(millis);
+		int sec = sss * 60;
+		exam.setSetTime(sec);
 
 		examService.saveExam(exam);
 		return "redirect:/Exam";
@@ -170,10 +170,11 @@ public class ExamController {
 	public String getExamToStudent(@PathVariable("Exam_Id")int Exam_Id,Model model) {
 		
 		Exam exam=examService.getExamByExamId(Exam_Id);
-		exam.getSetTime();
+		int timmer=exam.getSetTime();
 		List<Questions> listOfQuestion = questionService.listQuestionsbyExamId(Exam_Id);
-
+		
 		model.addAttribute("listOfQuestion", listOfQuestion);
+		model.addAttribute("timmer", timmer);
 
 		return "ShowExam";
 	}

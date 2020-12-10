@@ -14,34 +14,30 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 <p>
-	Exam wll be end in <span id="countdowntimer">10</span> Seconds
+	Exam wll be end in <span id="countdowntimer"></span> Seconds
 </p>
 
 <script type="text/javascript">
-		
-		var countdown = "60"
-			
-			function doCount() {
-			 document.getElementById("countdowntimer").textContent = countdown;
-			    if (countdown > 0) {
-			
-			        countdown--
-			
-			    }
-			    else{
-			setTimeout('document.form1.submit.click()')
-			    }
-			 window.status=countdown + " seconds left to complete the questionnaire."
-			
-			setTimeout('doCount()',1000) 
-			
-			}
-			
-			doCount()
+	/* var timmer = document.getElementById("timmer").value; */
+	var countdown = [[${timmer}]]
+	function doCount() {
+		document.getElementById("countdowntimer").textContent = countdown;
+		if (countdown > 0) {
 
+			countdown--
+
+		} else {
+			setTimeout('document.form1.submit.click()')
+		}
+		window.status = countdown
+				+ " seconds left to complete the questionnaire."
+		setTimeout('doCount()', 1000)
+	}
+	doCount()
 </script>
 </head>
 <body>
+<%-- 	<input type="hidden" id="timmer" name="timmer" value="${timmer}"> --%>
 	<h1 id="remain"></h1>
 	<c:url var="addAction" value="/showExams/${Exam_Id}/submitAnswer"></c:url>
 	<form:form action="${addAction}" id="form1" name="form1" method="post">
