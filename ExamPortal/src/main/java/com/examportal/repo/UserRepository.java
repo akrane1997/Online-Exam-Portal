@@ -22,6 +22,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 //	 public User findByUserIdentityUser_Id(long user_Id);
 //	
+//	@Query("update User u set u.user_Name= ?1, u.role = ?2 where u.user_Id = ?3")
+//	public User updateuser(String name,String role,long id) ;
+	
 	@Query("SELECT u FROM User u WHERE u.user_Name = :user_Name")
 	 public User findByUser_Name(String user_Name); 
 //	 

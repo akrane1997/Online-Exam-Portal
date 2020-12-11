@@ -33,12 +33,22 @@ public class UserService {
     	user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         repo.save(user);
     }
+    
+//    public User UpdateUser(String name,String role,long id)
+//    {
+//    return repo.updateuser(name, role, id);
+//    }
   
 	public User findByUsername(String username) {
 		return repo.findByUser_Name(username);
+		
 	}
      
     public User get(long id) {
+        return repo.findById(id).get();
+    }
+    
+    public User getUser(long id) {
         return repo.findById(id).get();
     }
      

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.examportal.details.MyUserDetails;
 import com.examportal.model.User;
 import com.examportal.repo.UserRepository;
 import com.examportal.service.UserService;
@@ -89,12 +92,25 @@ public class UserController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("user") User user) {
+		
+		
 		service.save(user);
 
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/savepassword", method = RequestMethod.POST)
+	public String savechangepassword(@ModelAttribute("user") User user,@Param(value = "password") String password) {
+		
+		user.setPassword(password);
+		service.save(user);
+
+		return "redirect:/";
+	}
+	
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+		System.out.println("edit user");
 		ModelAndView mav = new ModelAndView("/edit_User");
 		User user = service.get(id);
 		mav.addObject("user", user);
@@ -106,4 +122,45 @@ public class UserController {
 		service.delete(id);
 		return "redirect:/";       
 	}
+	
+	@RequestMapping("/userinfo")
+	public String viewuserInfo(@AuthenticationPrincipal MyUserDetails userDetails,Model model) {
+		Long id = userDetails.Id();
+		User user = service.getUser(id);
+
+		model.addAttribute("user", user);
+		return "/getUser";
+	}
+	
+//	@RequestMapping(value="/changepassword", method = RequestMethod.GET)
+//	public ModelAndView Enternamepage() {
+//		
+//		ModelAndView mv=new ModelAndView();
+//		mv.setViewName("/changepassword");
+//		System.out.println("change password");
+//	
+//
+//		return mv;
+//	}
+	
+	@RequestMapping(value = "/changepassword", method = RequestMethod.GET)
+	public String password2(Model model) {
+		model.addAttribute("user", new User());
+
+		return "/changepassword";
+	}
+
+
+	
+	
+	@RequestMapping("/changepassworduser")
+	public ModelAndView changepassword(@Param(value = "name") String name) {
+		System.out.println("change password 2");
+		ModelAndView mav = new ModelAndView("/changepassword2");
+		User user = service.findByUsername(name);
+		mav.addObject("user", user);
+
+		return mav;
+	}
+	
 }

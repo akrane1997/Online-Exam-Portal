@@ -12,6 +12,7 @@
 		<br>
 		<h3 th:inline="text">welcome
 			[[${#httpServletRequest.remoteUser}]]</h3>
+			<a href="/userinfo"><button>Userinfo</button></a>
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Logout"></input>
 		</form>
