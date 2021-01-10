@@ -44,31 +44,26 @@ public class MvcConfig implements WebMvcConfigurer {
 //	         
 //	        return viewResolver;
 //	    }
-	 @Value("${spring.mvc.view.prefix}")
-	    private String prefix;
-
-	    @Value("${spring.mvc.view.suffix}")
-	    private String suffix;
-
-//	    @Value("${spring.mvc.view.view-names}")
-//	    private String viewNames;
-
-	    @Bean
-	    InternalResourceViewResolver jspViewResolver() {
-	        final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	        viewResolver.setPrefix(prefix);
-	        viewResolver.setSuffix(suffix);
-	        viewResolver.setViewClass(JstlView.class);
-//	        viewResolver.setViewNames(viewNames);
-	        return viewResolver;
-	    }
-	    @Bean
-	    public ViewResolver getViewResolver() {
-	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-	        resolver.setPrefix("templates/");
-	        resolver.setSuffix(".html");
-	        return resolver;
-	    }
+	
+	  @Value("${spring.mvc.view.prefix}") private String prefix;
+	  
+	  @Value("${spring.mvc.view.suffix}") private String suffix;
+	  
+	  // @Value("${spring.mvc.view.view-names}") // private String viewNames;
+	  
+	  @Bean InternalResourceViewResolver jspViewResolver() { final
+	  InternalResourceViewResolver viewResolver = new
+	  InternalResourceViewResolver(); viewResolver.setPrefix(prefix);
+	  viewResolver.setSuffix(suffix); viewResolver.setViewClass(JstlView.class); 
+	 // viewResolver.setViewNames(viewNames);
+	  return viewResolver; 
+	  }
+	  
+	  @Bean public ViewResolver getViewResolver() { InternalResourceViewResolver
+	  resolver = new InternalResourceViewResolver();
+	  resolver.setPrefix("templates/"); resolver.setSuffix(".html"); return
+	  resolver; }
+	 
 	 
 
 	

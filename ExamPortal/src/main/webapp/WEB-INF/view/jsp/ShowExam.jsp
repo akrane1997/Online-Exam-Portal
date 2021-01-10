@@ -18,7 +18,6 @@
 </p>
 
 <script type="text/javascript">
-	/* var timmer = document.getElementById("timmer").value; */
 	var countdown = [[${timmer}]]
 	function doCount() {
 		document.getElementById("countdowntimer").textContent = countdown;
@@ -34,66 +33,104 @@
 		setTimeout('doCount()', 1000)
 	}
 	doCount()
+	
+	var bodyShow = document.getElementById("bodyContain");
+	bodyShow.requestFullscreen();
+	function openFullScreen(){
+		bodyShow.requestFullscreen();
+		}
+	  
 </script>
+	<script type="text/javascript" src="/ExamPortal/src/main/webapp/resources/static/js/application.js"></script>
+
 </head>
-<body>
-<%-- 	<input type="hidden" id="timmer" name="timmer" value="${timmer}"> --%>
-	<h1 id="remain"></h1>
-	<c:url var="addAction" value="/showExams/${Exam_Id}/submitAnswer"></c:url>
-	<form:form action="${addAction}" id="form1" name="form1" method="post">
-		<fieldset class="form-group container">
-			<c:forEach var="question" items="${listOfQuestion}">
-				<div class="col-sm-10">
-					<input type="hidden" readonly class="form-control-plaintext"
-						id="question_Id" name="question_Id"
-						value="${question.question_Id}">
-				</div>
-				<div class="row">
-					<div class="col-sm-10">
-						<input type="text" readonly class="form-control-plaintext"
-							id="staticEmail" value="${question.question}">
-					</div>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio"
-						name="option_${question.question_Id}" id="gridRadios1"
-						value="option1"> <label class="form-check-label"
-						for="gridRadios1">${question.option1} </label>
-				</div>
+<body id="bodyContain">
+	<div class="container" id="bodyContain">
+		<div class="card shadow-lg p-3 mb-5 bg-white rounded">
+			<div class="card-body">
+				<div class="col align-self-center">
+					<c:url var="addAction" value="/showExams/${Exam_Id}/submitAnswer"></c:url>
+					<form:form action="${addAction}" id="form1" name="form1"
+						method="post">
 
-				<div class="form-check">
-					<input class="form-check-input" type="radio"
-						name="option_${question.question_Id}" id="gridRadios2"
-						value="option2"> <label class="form-check-label"
-						for="gridRadios2">${question.option2} </label>
-				</div>
+						<fieldset class="form-group container">
+							<table class="table table-borderless">
+								<c:forEach var="question" items="${listOfQuestion}">
+									<div class="col-sm-10">
+										<input type="hidden" readonly class="form-control-plaintext"
+											id="question_Id" name="question_Id"
+											value="${question.question_Id}">
+									</div>
+									<thead>
+										<tr>
+											<th scope="col">
+												<div class="row">
+													<div class="col-sm-10">
+														<input type="text" readonly class="form-control-plaintext"
+															id="question" value="Q. ${question.question}">
+													</div>
+												</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" type="radio"
+														name="option_${question.question_Id}" id="gridRadios1"
+														value="option1"> <label class="form-check-label"
+														for="gridRadios1">${question.option1} </label>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" type="radio"
+														name="option_${question.question_Id}" id="gridRadios1"
+														value="option1"> <label class="form-check-label"
+														for="gridRadios1">${question.option2} </label>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" type="radio"
+														name="option_${question.question_Id}" id="gridRadios1"
+														value="option1"> <label class="form-check-label"
+														for="gridRadios1">${question.option3} </label>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" type="radio"
+														name="option_${question.question_Id}" id="gridRadios1"
+														value="option1"> <label class="form-check-label"
+														for="gridRadios1">${question.option4} </label>
+												</div>
+											</td>
+										</tr>
+									</tbody>
 
-				<div class="form-check">
-					<input class="form-check-input" type="radio"
-						name="option_${question.question_Id}" id="gridRadios2"
-						value="option3"> <label class="form-check-label"
-						for="gridRadios2">${question.option3} </label>
-				</div>
+								</c:forEach>
+							</table>
+							<div class="form-group row">
+								<div class="col-sm-10 offset-sm-5">
+									<input type="submit" name="submit" id="submit" value="submit"
+										class="btn btn-primary btn-lg">
+								</div>
+							</div>
+						</fieldset>
 
-				<div class="form-check">
-					<input class="form-check-input" type="radio"
-						name="option_${question.question_Id}" id="gridRadios2"
-						value="option4"> <label class="form-check-label"
-						for="gridRadios2">${question.option4} </label>
-				</div>
-
-
-				<br>
-			</c:forEach>
-			<div class="form-group row">
-				<div class="col-sm-10 offset-sm-2">
-					<input type="submit" name="submit" id="submit" value="submit"
-						class="btnbtn-primary">
+					</form:form>
 				</div>
 			</div>
-		</fieldset>
-
-	</form:form>
+		</div>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

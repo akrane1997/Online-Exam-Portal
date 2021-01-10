@@ -46,9 +46,18 @@ public class UserController {
 	public String registration( @Param("username") String username, @Param("role") String role,@Param("password") String password) {
 //		UserIdentity userIdentity=new UserIdentity();
 		User user = new User();
-	
+		if(role == "Student")
+		{
+			String roleName="ROLE_USER";
+			user.setRole(roleName);
+		}
+		else
+		{
+			String roleName="ROLE_ADMIN";
+			user.setRole(roleName);
+		}
 		user.setUser_Name(username);;
-		user.setRole(role);
+		
 		user.setPassword(passwordEncoder.encode(password));
 		repo.save(user);
 
@@ -76,10 +85,10 @@ public class UserController {
 	//    }
 	@RequestMapping("/")
 	public String viewHomePage(Model model) {
-		List<User> list = service.listAll();
+		List<User> list = service.userList();
 
 		model.addAttribute("list", list);
-		return "/index";
+		return "HomePage";
 	}
 
 	@RequestMapping("/new")
@@ -87,7 +96,7 @@ public class UserController {
 		User user = new User();
 		model.addAttribute("user", user);
 
-		return "/new_User";
+		return "new_User";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -129,7 +138,7 @@ public class UserController {
 		User user = service.getUser(id);
 
 		model.addAttribute("user", user);
-		return "/getUser";
+		return "UserInfo";
 	}
 	
 //	@RequestMapping(value="/changepassword", method = RequestMethod.GET)
@@ -161,6 +170,13 @@ public class UserController {
 		mav.addObject("user", user);
 
 		return mav;
+	}
+	@RequestMapping("/userList")
+	public String viewUserList(Model model) {
+		List<User> list = service.userList();
+
+		model.addAttribute("list", list);
+		return "/index";
 	}
 	
 }

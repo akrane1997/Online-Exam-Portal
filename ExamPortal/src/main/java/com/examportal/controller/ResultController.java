@@ -41,4 +41,11 @@ public class ResultController {
 
 		return mv;
 	}
+	@RequestMapping(value = "/showresult", method = RequestMethod.GET)
+	public ModelAndView ListOfScore(ModelAndView model) {
+		List<Score> listOfscore =scoreservice.listAllResult();
+		model.addObject("listOfscore", listOfscore);
+		model.setViewName("Result");
+		return model;
+	}
 }

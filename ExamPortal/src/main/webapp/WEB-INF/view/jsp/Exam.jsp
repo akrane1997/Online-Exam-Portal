@@ -16,75 +16,92 @@
 <title>Add Question</title>
 </head>
 <body>
+	<jsp:include page="Header.jsp" />
+	
 	<div class="container " align="center">
 		<div class="bs-example">
-			<h2 class="heading">Add Question</h2>
+			<br>
 			<div>
-				<c:url var="addAction" value="/Exam/add"></c:url>
-				<form:form action="${addAction}" method="post" modelAttribute="exam">
-					<div>
-						<form:form action="${addAction}" method="post" modelAttribute="user">
-							<form:hidden class="form-control" name="id" path="id"></form:hidden>
-						</form:form>
-					</div>
-					<c:if test="${!empty exam.exam_Name}">
+				<div class="card2 card border-1 shadow-lg px-4 py-4">
+					<h2 class="heading">Add Exam</h2>
+					<br>
+					<c:url var="addAction" value="/saveExam"></c:url>
+					<form:form action="${addAction}" method="post"
+						modelAttribute="exam">
+						<c:if test="${!empty exam.exam_Name}">
+							<div class="form-group row">
+								<form:label path="Exam_Id" readonly="ture" name="Exam_Id"
+									class="col-sm-2 col-form-label">Exam Id:</form:label>
+								<div class="col-sm-10">
+									<form:input class="form-control" name="Exam_Id" path="Exam_Id"
+										readonly="true"></form:input>
+								</div>
+							</div>
+						</c:if>
+
 						<div class="form-group row">
-							<form:label path="Exam_Id" name="Exam_Id"
-								class="col-sm-2 col-form-label">Exam Id:</form:label>
+							<form:label path="Exam_Name" class="col-sm-2 col-form-label">Exam Name:</form:label>
 							<div class="col-sm-10">
-								<form:input class="form-control" name="Exam_Id" path="Exam_Id"
-									required="true"></form:input>
+								<form:textarea class="form-control" path="Exam_Name"
+									placeholder="Type Exam Title here" required="true" rows="3"></form:textarea>
 							</div>
 						</div>
-					</c:if>
-
-					<div class="form-group row">
-						<form:label path="Exam_Name" class="col-sm-2 col-form-label">Exam Name:</form:label>
-						<div class="col-sm-10">
-							<form:textarea class="form-control" path="Exam_Name"
-								placeholder="Type Exam Title here" required="true" rows="3"></form:textarea>
-						</div>
-					</div>
-
-					<c:if test="${!empty exam.exam_Name}">
 						<div class="form-group row">
-							<div class="col-sm-10 offset-sm-2">
-								<button type="submit" class="btn btn-primary">update
-									Exam</button>
+							<form:label path="setTime" name="setTime"
+								class="col-sm-2 col-form-label">Exam Duration(mins):</form:label>
+							<div class="col-sm-10">
+								<form:input class="form-control" path="setTime" name="setTime"
+									placeholder="Enter Exam Duration in minutes" required="true"
+									rows="3"></form:input>
 							</div>
 						</div>
-					</c:if>
-					<c:if test="${empty exam.exam_Name}">
-						<div class="form-group row">
-							<div class="col-sm-10 offset-sm-2">
-								<button type="submit" class="btn btn-primary">Submit</button>
+
+						<c:if test="${!empty exam.exam_Name}">
+							<div class="form-group row">
+								<div class="col-sm-10 offset-sm-2">
+									<button type="submit" class="btn btn-primary">update
+										Exam</button>
+								</div>
 							</div>
-						</div>
-					</c:if>
-				</form:form>
+						</c:if>
+						<c:if test="${empty exam.exam_Name}">
+							<div class="form-group row">
+								<div class="col-sm-10 offset-sm-1">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</c:if>
+					</form:form>
+				</div>
+
 			</div>
 
 			<div class="container bs-example" align="center">
-
-				<c:if test="${!empty listOfExam}">
-					<h2 class="heading">Question List</h2>
-					<table class="table table-bordered">
+				<br>
+				<c:if test="${!empty list}">
+					<h2 class="heading">Exam List</h2>
+					<table class="table table-bordered-1 table-hover">
 						<thead>
 							<tr>
 								<th scope="col">Date</th>
 								<th scope="col">Exam Id</th>
 								<th scope="col">Exam Name</th>
+								<th scope="col">Exam Duration (sec)</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="exam" items="${listOfExam}">
+							<c:forEach var="exam" items="${list}">
 								<tr>
 									<td>${exam.startDate}</td>
 									<td>${exam.exam_Id}</td>
 									<td>${exam.exam_Name}</td>
-									<td><a href="<c:url value='/editExam/${exam.exam_Id}' />"><button>Edit</button></a>
-										<a href="<c:url value='/deleteExam/${exam.exam_Id}' />"><button>Delete</button></a></td>
+									<td>${exam.setTime}</td>
+									<td><a href="<c:url value='/editExam/${exam.exam_Id}' />"><button class="btn btn-warning btn-shadow">Edit</button></a>
+										<a href="<c:url value='/deleteExam/${exam.exam_Id}' />"><button class="btn btn-danger btn-shadow">Delete</button></a>
+										<a href="<c:url value='/question/${exam.exam_Id}' />"><button class="btn btn-danger btn-shadow">Add Questions</button></a>
+										<a href="<c:url value='/addCandidate/${exam.exam_Id}' />"><button class="btn btn-info btn-shadow">Add Candidates</button></a>
+										<a href="<c:url value='/showresult/${exam.exam_Id}' />"><button class="btn btn-success btn-shadow">Result</button></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

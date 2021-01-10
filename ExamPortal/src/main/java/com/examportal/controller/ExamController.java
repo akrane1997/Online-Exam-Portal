@@ -49,25 +49,24 @@ public class ExamController {
 		Long id = userDetails.Id();
 
 		List<Exam> list = examService.getExamByUser_Id(id);
-
+		Exam exam = new Exam();
+		model.addAttribute("exam", exam);
 		model.addAttribute("list", list);
 
-		return "/exampage";
+		return "Exam";
 	}
 
-	@RequestMapping("/addExam")
-	public String showNewProductPage(Model model) {
-		Exam exam = new Exam();
-		//User user = userService.get(id);
-
-		//exam.setUser(user);
-		model.addAttribute("exam", exam);
-
-		return "/addexam";
-	}
+	/*
+	 * @RequestMapping("/addExam") public String showNewProductPage(Model model) {
+	 * Exam exam = new Exam(); //User user = userService.get(id);
+	 * 
+	 * //exam.setUser(user); model.addAttribute("exam", exam);
+	 * 
+	 * return "/Exam"; }
+	 */
 
 	@RequestMapping(value = "/saveExam", method = RequestMethod.POST)
-	public String saveExam(@AuthenticationPrincipal MyUserDetails userDetails,@ModelAttribute("exam") Exam exam,@Param("sss") int sss) {
+	public String saveExam(@AuthenticationPrincipal MyUserDetails userDetails,@ModelAttribute("exam") Exam exam,@Param(value="setTime") int setTime) {
 
 		Long id = userDetails.Id();
 		System.out.println(id);
@@ -75,10 +74,10 @@ public class ExamController {
 		System.out.println(user);
 		exam.setUser(user);
 
-		System.out.println("time :"+sss);
+		System.out.println("time :"+setTime);
 
 
-		int sec = sss * 60;
+		int sec = setTime * 60;
 		exam.setSetTime(sec);
 
 		examService.saveExam(exam);
@@ -87,6 +86,7 @@ public class ExamController {
 
 	@RequestMapping("/deleteExam/{Exam_Id}")
 	public String deleteExam(@PathVariable("Exam_Id") int Exam_Id){
+		System.out.println("delete Exam"+Exam_Id);
 		examService.deleteByExamId(Exam_Id);
 		return "redirect:/Exam";
 	}
@@ -95,7 +95,10 @@ public class ExamController {
 	@RequestMapping("/editExam/{Exam_Id}")
 	public ModelAndView editExam(@PathVariable("Exam_Id") int Exam_Id) {	
 		Exam exam=examService.getExamByExamId(Exam_Id);
-		ModelAndView mav = new ModelAndView("/edit_exam");
+		int min=exam.getSetTime() / 60;
+		System.out.println("min : "+min);
+		exam.setSetTime(min);
+		ModelAndView mav = new ModelAndView("Exam");
 		mav.addObject("exam",exam);
 
 		return mav;
@@ -137,17 +140,6 @@ public class ExamController {
 		return "redirect:/addCandidate/{Exam_Id}";
 	}
 
-	//	@RequestMapping(value="/Examuser/{Exam_Id}")
-	//	public String viewExam_userList( Model model,@PathVariable("Exam_Id") int Exam_Id) {
-	//		System.out.println("Examuserlist examid:"+Exam_Id);
-	//
-	//		//ModelAndView mv=new ModelAndView("showCandidate");
-	//		List<Exam_user> list = exam_UserService.getExam_userByexam_Id(Exam_Id);
-	//
-	//		model.addAttribute("list", list);
-	//
-	//	return "redirect:/addCandidate/{Exam_Id}";
-	//	}
 
 	@RequestMapping("/addCandidate/{Exam_Id}/delete/{id}")
 	public String deletecadidate(@PathVariable("Exam_Id") int Exam_Id,@PathVariable("id") long id){

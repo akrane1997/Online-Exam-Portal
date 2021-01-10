@@ -60,5 +60,8 @@ public class UserService {
 //    List <User> listOfCandidate(long exam_Id) {
 //		return repo.findByUser_IdWhereExam_Id(exam_Id);
 //	}
+	public List<User> userList() {
+        return repo.findByUserByRole();
+    }
 
 }

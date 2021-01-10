@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.examportal.model.Exam;
 import com.examportal.model.Score;
 import com.examportal.repo.ScoreRepo;
 
@@ -35,5 +36,8 @@ public class Scoreservice {
 	{
 		scorerepo.deleteById(id);
 	}
-
+	
+	public List<Score> listAllResult() {
+		return scorerepo.findAll();
+	}
 }

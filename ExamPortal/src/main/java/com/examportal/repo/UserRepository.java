@@ -31,6 +31,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //	@Query("delete from User u where u.user_Id = :user_Id")
 //	 public User deleteByUser_Id(long user_Id);
 
-//	@Query("SELECT u FROM User u WHERE u.exam1.Exam_Id = :Exam_Id")
-//	 List <User> findByUser_IdWhereExam_Id(long Exam_Id); 
+	@Query("SELECT u FROM User u WHERE u.role= 'ROLE_USER'")
+	 List <User> findByUserByRole(); 
 }

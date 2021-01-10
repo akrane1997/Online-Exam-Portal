@@ -17,19 +17,22 @@
 
 </head>
 <body>
+<jsp:include page="Header.jsp" />
 	<div class="container " align="center">
 		<div class="bs-example">
-			<h2 class="heading">show exams</h2>
+		<br>
+			<h1>Score List</h1>
+			<br><br>
 			<div class="container bs-example" align="center">
-				<h2 class="heading">Score List</h2>
-				<table class="table table-bordered">
+				
+				<table class="table table-bordered-2 table-hover">
 					<thead>
 						<tr>
-							<th scope="col">Create_ExamDate</th>
-							<th scope="col">Given_ExamDate</th>
-							<th scope="col">UserId</th>
+							<th scope="col">Create Exam Date</th>
+							<th scope="col">Given Exam Date</th>
+							<th scope="col">User Id</th>
 							<th scope="col">User Name</th>
-							<th scope="col">ExamId</th>
+							<th scope="col">Exam Id</th>
 							<th scope="col">Exam Name</th>
 							<th scope="col">Score</th>
 						</tr>
