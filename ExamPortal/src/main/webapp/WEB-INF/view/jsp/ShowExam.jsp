@@ -12,40 +12,73 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
+
 <title>Insert title here</title>
-<p>
-	Exam wll be end in <span id="countdowntimer"></span> Seconds
-</p>
 
 <script type="text/javascript">
-	var countdown = [[${timmer}]]
+
+
+/* function openFullscreen() {
+	var fullScreenElement = document.querySelector('body');
+	console.log(fullScreenElement);
+	fullScreenElement.requestFullscreen();
+	doCount();
+} 
+ */
+
+var countdown = [[${timmer}]];
 	function doCount() {
 		document.getElementById("countdowntimer").textContent = countdown;
 		if (countdown > 0) {
 
-			countdown--
+			countdown--;
 
 		} else {
-			setTimeout('document.form1.submit.click()')
+			setTimeout('document.form1.submit.click()');
 		}
 		window.status = countdown
 				+ " seconds left to complete the questionnaire."
-		setTimeout('doCount()', 1000)
+		setTimeout('doCount()', 1000);
 	}
-	doCount()
 	
-	var bodyShow = document.getElementById("bodyContain");
-	bodyShow.requestFullscreen();
-	function openFullScreen(){
-		bodyShow.requestFullscreen();
-		}
-	  
+	
+
+		 var i=0;
+
+		function pause() {
+			  document.body.classList.add('paused');
+			 
+			function increase()
+			{
+				i++;
+			window.alert("Warnning!!!"+ " "+(i)+" \n don't click out side of your exam , \n if you click out side of your exam you will get 2 warnings  \n after that your exam will submit automatically."); 
+			if (i>2) {
+				document.form1.submit.click();			
+					} 
+			}	
+			increase();
+			}
+
+			function play() {
+			  document.body.classList.remove('paused');
+			  
+			}
+
+			const log = document.getElementById('bodyContain');
+
+			window.addEventListener('blur', pause);
+			window.addEventListener('focus', play);
+			
+	
 </script>
-	<script type="text/javascript" src="/ExamPortal/src/main/webapp/resources/static/js/application.js"></script>
 
 </head>
-<body id="bodyContain">
+<body onload="doCount()">
+
 	<div class="container" id="bodyContain">
+		<p>
+			Exam wll be end in <span id="countdowntimer"></span> Seconds
+		</p>
 		<div class="card shadow-lg p-3 mb-5 bg-white rounded">
 			<div class="card-body">
 				<div class="col align-self-center">

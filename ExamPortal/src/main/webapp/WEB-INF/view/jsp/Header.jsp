@@ -12,8 +12,8 @@
 	<header>
 
 		<nav class="navbar navbar-expand-lg navbar-dark badge-dark">
-			<a class="navbar-brand" href="#"><img alt=""
-				src="/ExamPortal/src/main/webapp/resources/images/8e360d02-2b22-46cb-92be-79ff301af21d_200x200.png"><strong>Navbar</strong></a>
+		<!-- 	<a class="navbar-brand" href="#"><img alt=""
+				src="/ExamPortal/src/main/webapp/resources/images/8e360d02-2b22-46cb-92be-79ff301af21d_200x200.png"><strong>Navbar</strong></a> -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -25,8 +25,12 @@
 					<li class="nav-item active"><a class="nav-link" href="#">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<div sec:authorize access="hasAnyRole('ADMIN)">
+					<div sec:authorize access="hasAnyRole('ROLE_ADMIN)">
 						<li class="nav-item"><a class="nav-link" href="/Exam">Exam</a>
+						</li>
+					</div>
+					<div>
+						<li class="nav-item"><a class="nav-link" href="/showExams">Exams</a>
 						</li>
 					</div>
 					<li class="nav-item"><a class="nav-link" href="/showresult">Result</a>

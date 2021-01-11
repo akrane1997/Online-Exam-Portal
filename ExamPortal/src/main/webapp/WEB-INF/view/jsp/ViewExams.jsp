@@ -13,10 +13,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
-	<script type="text/javascript" src="/ExamPortal/src/main/webapp/resources/static/js/application.js"></script>
+	
 <title>show candidate</title>
 </head>
-<body>
+<body >
 <div>
 <jsp:include page="Header.jsp" />
 </div>
@@ -44,7 +44,7 @@
 								<td>${list.exam.exam_Id}</td>
 								<td>${list.exam.exam_Name}</td>
 								<td><a
-									href="<c:url value='/showExams/${list.exam.exam_Id}' />"><button class="btn btn-success" onclick="openFullScreen();">Start
+									href="<c:url value='/showExams/${list.exam.exam_Id}'  />"  ><button class="btn btn-success" >Start
 											Exam</button></a></td>
 							</tr>
 						</c:forEach>
