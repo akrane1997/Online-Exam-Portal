@@ -16,85 +16,86 @@
 <title>Add Question</title>
 </head>
 <body>
-<jsp:include page="Header.jsp" />
+	<jsp:include page="Header.jsp" />
 	<div class="container " align="center">
 		<div class="bs-example">
-			<h2 class="heading">Add Candidate</h2>
-			<c:url var="addAction" value="/addCandidate/${Exam_Id}/saveCandidate"></c:url>
+			<br>
+			<div class="card2 card border-1 shadow-lg px-4 py-4">
+				<h2 class="heading">Add Candidate</h2>
+				<br>
+				<c:url var="addAction"
+					value="/addCandidate/${Exam_Id}/saveCandidate"></c:url>
 
-			<form:form action="${addAction}" method="post" modelAttribute="user">
-				<div class="form-group row">
-					<form:label path="user_Id" name="user_Id"
-						class="col-sm-2 col-form-label">User Id :</form:label>
-					<div class="col-sm-10">
-						<form:input class="form-control" name="user_Id" path="user_Id"
-							placeholder="Enter User Id of Candidate " required="true"></form:input>
-					</div>
-					<div>
-					hi
-					<c:forEach var="list" items="${list}">
-					
-					<h6 class="mb-0 text-sm">Select-Candidate</h6></label> 
-					<select class="form-control" name="role" id="role">
+				<form:form action="${addAction}" method="post">
+					<div class="form-group">
+						<div>
+							<select class="form-control" name="name" id="name">
 								<option>select candidate</option>
-								<option>${list.user.user_Id}</option>
-								<%-- <option>${list.user_Name}</option> --%>
-								</select>
-					</c:forEach>
-					
+								<c:forEach var="list" items="${userList}">
+
+									<option>${list.user_Name}</option>
+								</c:forEach>
+							</select>
+
+
+						</div>
 					</div>
-				</div>
 
-				<div class="form-group row">
-					<div class="col-sm-10 offset-sm-2">
-						<button type="submit" class="btn btn-primary">Submit</button>
+					<div class="form-group row">
+						<div class="col-sm-10 offset-sm-1">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
 					</div>
-				</div>
-			</form:form>
-
-			<div class="container bs-example" align="center">
-				<c:if test="${!empty list}">
-					<h2 class="heading">Exam_User List</h2>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">UserId</th>
-								<th scope="col">ExamId</th>
-
-
-								<th scope="col">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="list" items="${list}">
-								<tr>
-									<td>${list.id}</td>
-									<td>${list.user.user_Id}</td>
-									<td>${list.exam.exam_Id}</td>
-
-
-									<%-- <td><a
-										href="<c:url value='/candidate/${Exam_Id}/editCandidate/${exam.exam_Id}' />"><button>Edit</button></a>--%>
-
-									<td><a
-										href="<c:url value='/addCandidate/${Exam_Id}/delete/${list.id}' />"><button>Delete</button></a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</c:if>
+				</form:form>
 			</div>
-			<%-- 			<br> <a href="/Examuser/${Exam_Id}"><button>show List</button>e </a> <br />  --%>
-			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-				integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-				crossorigin="anonymous"></script>
-			<script
-				src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-				crossorigin="anonymous"></script>
 		</div>
 	</div>
+	<br>
+
+	<div class="container bs-example" align="center">
+		<c:if test="${!empty list}">
+			<h2 class="heading">Exam_User List</h2>
+			<br>
+			<table class="table table-bordered-1 table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">UserId</th>
+						<th scope="col">ExamId</th>
+
+
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="list" items="${list}">
+						<tr>
+							<td>${list.id}</td>
+							<td>${list.user.user_Id}</td>
+							<td>${list.exam.exam_Id}</td>
+
+
+							<%-- <td><a
+										href="<c:url value='/candidate/${Exam_Id}/editCandidate/${exam.exam_Id}' />"><button>Edit</button></a>--%>
+
+							<td><a
+								href="<c:url value='/addCandidate/${Exam_Id}/delete/${list.id}' />"><button
+										class="btn btn-danger btn-shadow">Delete</button></a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
+	</div>
+	<%-- 			<br> <a href="/Examuser/${Exam_Id}"><button>show List</button>e </a> <br />  --%>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+
 
 </body>
 </html>

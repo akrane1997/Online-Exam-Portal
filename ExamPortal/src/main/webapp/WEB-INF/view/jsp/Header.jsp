@@ -12,7 +12,7 @@
 	<header>
 
 		<nav class="navbar navbar-expand-lg navbar-dark badge-dark">
-		<!-- 	<a class="navbar-brand" href="#"><img alt=""
+			<!-- 	<a class="navbar-brand" href="#"><img alt=""
 				src="/ExamPortal/src/main/webapp/resources/images/8e360d02-2b22-46cb-92be-79ff301af21d_200x200.png"><strong>Navbar</strong></a> -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -25,31 +25,28 @@
 					<li class="nav-item active"><a class="nav-link" href="/">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					
-					
-					 <sec:authorize access="hasRole('ROLE_ADMIN')">  
-					 <div>
-						<li class="nav-item"><a class="nav-link" href="/Exam">Exam</a>
-						</li>
+
+
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<div>
+							<li class="nav-item"><a class="nav-link" href="/Exam">Exam</a>
+							</li>
 						</div>
-						</sec:authorize>
-					<sec:authorize access="hasRole('ROLE_USER')">
-					<div>
-				
-						<li class="nav-item"><a class="nav-link" href="/showExams">Exams</a>
-						</li>
-						
-					</div>
 					</sec:authorize>
-					
-					 <sec:authorize access="hasRole('ROLE_ADMIN')">  
-					 <div>
-						<li class="nav-item"><a class="nav-link" href="/userList">Student's List</a>
-						</li>
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<div>
+
+							<li class="nav-item"><a class="nav-link" href="/showExams">Exams</a>
+							</li>
+
 						</div>
-						</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="/result">Result</a>
-					</li>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<div>
+							<li class="nav-item"><a class="nav-link" href="/result">Result</a>
+							</li>
+						</div>
+					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="/userinfo">User
 							Info</a></li>
 				</ul>
@@ -61,11 +58,16 @@
 					<li class="nav-item"><a class="nav-link"><i
 							class="fab fa-instagram"></i></a></li>
 				</ul>
+				
 			</div>
-			${pageContext.request.remoteUser}
+			
+			<div>${pageContext.request.remoteUser}</div>
+			&nbsp; &nbsp;
+
 			<form:form action="/logout" method="post">
 				<input type="submit" value="Logout"></input>
 			</form:form>
+			
 		</nav>
 
 	</header>

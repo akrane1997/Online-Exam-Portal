@@ -43,7 +43,7 @@ public class ExamController {
 
 	@Autowired
 	private QuestionService questionService;
-
+	
 	@RequestMapping(value="/Exam")
 	public String viewHomePage(@AuthenticationPrincipal MyUserDetails userDetails, Model model) {
 		Long id = userDetails.Id();
@@ -114,20 +114,29 @@ public class ExamController {
 		List<Exam> Elist = examService.getExamByExamName(Examname);
 		mv.addAttribute("Elist", Elist);
 
-		return "/searchexam";
+		return "SearchExam";
 	}
 
 	@RequestMapping("/addCandidate/{Exam_Id}")
 	public String addCandidtae(Model model,@PathVariable("Exam_Id") int Exam_Id) {
 		User user=new User();
 		model.addAttribute("user", user);
-		List<Exam_user> list = exam_UserService.getExam_userByexam_Id(Exam_Id);
-		model.addAttribute("list", list);
+		
+		  List<Exam_user> list = exam_UserService.getExam_userByexam_Id(Exam_Id);
+		  model.addAttribute("list", list);
+		 
+		List<User> userList = userService.userList();
+		model.addAttribute("userList", userList);
 		return "AddCandidate";
 	}
 
 	@RequestMapping(value = "/addCandidate/{Exam_Id}/saveCandidate", method = RequestMethod.POST)
-	public String saveCandidate(@ModelAttribute("user") User user,@PathVariable("Exam_Id") long Exam_Id,@Param("Id") long user_Id) {
+	public String saveCandidate(@PathVariable("Exam_Id") long Exam_Id,@Param("name") String name) {
+		User user=new User();
+		user=userService.findByUsername(name);
+		long user_Id=user.getUser_Id();
+		System.out.println("user id: "+user_Id);
+		
 		System.out.println("exam Id: "+Exam_Id);
 		Exam exam=new Exam();
 		Exam_user examuser=new Exam_user();

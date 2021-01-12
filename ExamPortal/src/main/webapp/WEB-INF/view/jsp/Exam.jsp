@@ -17,17 +17,17 @@
 </head>
 <body>
 	<jsp:include page="Header.jsp" />
-	
+
 	<div class="container " align="center">
 		<div class="bs-example">
 			<br>
 			<div>
 				<div class="card2 card border-1 shadow-lg px-4 py-4">
-				<c:if test="${empty exam.exam_Name}">
-					<h2 class="heading">Add Exam</h2>
+					<c:if test="${empty exam.exam_Name}">
+						<h2 class="heading">Add Exam</h2>
 					</c:if>
 					<c:if test="${!empty exam.exam_Name}">
-					<h2 class="heading">Update Exam</h2>
+						<h2 class="heading">Update Exam</h2>
 					</c:if>
 					<br>
 					<c:url var="addAction" value="/saveExam"></c:url>
@@ -85,6 +85,7 @@
 				<br>
 				<c:if test="${!empty list}">
 					<h2 class="heading">Exam List</h2>
+					
 					<table class="table table-bordered-1 table-hover">
 						<thead>
 							<tr>
@@ -102,11 +103,16 @@
 									<td>${exam.exam_Id}</td>
 									<td>${exam.exam_Name}</td>
 									<td>${exam.setTime}</td>
-									<td><a href="<c:url value='/editExam/${exam.exam_Id}' />"><button class="btn btn-warning btn-shadow">Edit</button></a>
-										<a href="<c:url value='/deleteExam/${exam.exam_Id}' />"><button class="btn btn-danger btn-shadow">Delete</button></a>
-										<a href="<c:url value='/question/${exam.exam_Id}' />"><button class="btn btn-danger btn-shadow">Add Questions</button></a>
-										<a href="<c:url value='/addCandidate/${exam.exam_Id}' />"><button class="btn btn-info btn-shadow">Add Candidates</button></a>
-										<a href="<c:url value='/showresult/${exam.exam_Id}' />"><button class="btn btn-success btn-shadow">Result</button></a></td>
+									<td><a href="<c:url value='/editExam/${exam.exam_Id}' />"><button
+												class="btn btn-warning btn-shadow">Edit</button></a> <a
+										href="<c:url value='/deleteExam/${exam.exam_Id}' />"><button
+												class="btn btn-danger btn-shadow">Delete</button></a> <a
+										href="<c:url value='/question/${exam.exam_Id}' />"><button
+												class="btn btn-danger btn-shadow">Add Questions</button></a> <a
+										href="<c:url value='/addCandidate/${exam.exam_Id}' />"><button
+												class="btn btn-info btn-shadow">Add Candidates</button></a> <a
+										href="<c:url value='/showresult/${exam.exam_Id}' />"><button
+												class="btn btn-success btn-shadow">Result</button></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

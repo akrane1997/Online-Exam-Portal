@@ -46,7 +46,7 @@ public class UserController {
 	public String registration( @Param("username") String username, @Param("role") String role,@Param("password") String password) {
 //		UserIdentity userIdentity=new UserIdentity();
 		User user = new User();
-		if(role == "Student")
+		if(role.equals("Student"))
 		{
 			String roleName="ROLE_USER";
 			user.setRole(roleName);
