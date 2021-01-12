@@ -23,7 +23,12 @@
 			<br>
 			<div>
 				<div class="card2 card border-1 shadow-lg px-4 py-4">
+				<c:if test="${empty exam.exam_Name}">
 					<h2 class="heading">Add Exam</h2>
+					</c:if>
+					<c:if test="${!empty exam.exam_Name}">
+					<h2 class="heading">Update Exam</h2>
+					</c:if>
 					<br>
 					<c:url var="addAction" value="/saveExam"></c:url>
 					<form:form action="${addAction}" method="post"

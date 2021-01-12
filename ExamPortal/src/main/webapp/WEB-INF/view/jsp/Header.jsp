@@ -25,14 +25,29 @@
 					<li class="nav-item active"><a class="nav-link" href="#">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<div sec:authorize access="hasAnyRole('ROLE_ADMIN)">
+					
+					
+					 <sec:authorize access="hasRole('ROLE_ADMIN')">  
+					 <div>
 						<li class="nav-item"><a class="nav-link" href="/Exam">Exam</a>
 						</li>
-					</div>
+						</div>
+						</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_USER')">
 					<div>
+				
 						<li class="nav-item"><a class="nav-link" href="/showExams">Exams</a>
 						</li>
+						
 					</div>
+					</sec:authorize>
+					
+					 <sec:authorize access="hasRole('ROLE_ADMIN')">  
+					 <div>
+						<li class="nav-item"><a class="nav-link" href="/userList">Student's List</a>
+						</li>
+						</div>
+						</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="/showresult">Result</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/userinfo">User

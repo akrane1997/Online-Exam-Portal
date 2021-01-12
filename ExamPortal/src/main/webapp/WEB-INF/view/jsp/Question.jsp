@@ -16,91 +16,99 @@
 <title>Add Question</title>
 </head>
 <body>
-
+	<jsp:include page="Header.jsp" />
 	<div class="container " align="center">
 		<div class="bs-example">
-			<h2 class="heading">Add Question</h2>
-			<c:url var="addAction" value="/question/${Exam_Id}/add"></c:url>
-			
-			<form:form action="${addAction}" method="post"
-				modelAttribute="questions">
-				<c:if test="${!empty questions.question}">
-					<div class="form-group row">
-						<form:label path="question_Id" name="question_Id" class="col-sm-2 col-form-label">Question
-							Id</</form:label>
-						<div class="col-sm-10">
-							<form:input class="form-control" name="question_Id" path="question_Id"
-								 required="true"></form:input>
-						</div>
-					</div>
-				</c:if>
-				<div class="form-group row">
-					<form:label path="question" class="col-sm-2 col-form-label">Question</form:label>
-					<div class="col-sm-10">
-						<form:textarea class="form-control" path="question"
-							placeholder="Type Question here" required="true" rows="3"></form:textarea>
-					</div>
-				</div>
-				<div class="form-group row">
-					<form:label path="option1" class="col-sm-2 col-form-label">Option
-						1</form:label>
-					<div class="col-sm-10">
-						<form:input path="option1" class="form-control"
-							placeholder="Type Option 1 here" required="true"></form:input>
-					</div>
-				</div>
-				<div class="form-group row">
-					<form:label path="option2" class="col-sm-2 col-form-label">Option
-						2</form:label>
-					<div class="col-sm-10">
-						<form:input path="option2" class="form-control"
-							placeholder="Type Option 2 here" required="true"></form:input>
-					</div>
-				</div>
-				<div class="form-group row">
-					<form:label path="option3" class="col-sm-2 col-form-label">Option3</form:label>
-					<div class="col-sm-10">
-						<form:input path="option3" class="form-control"
-							placeholder="Type Option 3 here" required="ture"></form:input>
-					</div>
-				</div>
-				<div class="form-group row">
-					<form:label path="option4" class="col-sm-2 col-form-label">Option
-						4</form:label>
-					<div class="col-sm-10">
-						<form:input path="option4" class="form-control"
-							placeholder="Type Option 4 here" required="ture"></form:input>
-					</div>
-				</div>
-				<div class="form-group row">
-					<form:label path="answer" class="col-sm-2 col-form-label">Answer</form:label>
-					<div class="col-sm-10">
-						<form:input path="answer" class="form-control"
-							placeholder="Type Answer here" required="true"></form:input>
-					</div>
-				</div>
-				<c:if test="${!empty questions.question}">
-					<div class="form-group row">
-						<div class="col-sm-10 offset-sm-2">
-							<button type="submit" class="btn btn-primary">update
-								Question</button>
-						</div>
-					</div>
-				</c:if>
-				<c:if test="${empty questions.question}">
-					<div class="form-group row">
-						<div class="col-sm-10 offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</div>
-				</c:if>
-			</form:form>
+			<br>
+			<div>
+				<div class="card2 card border-1 shadow-lg px-4 py-4">
+					<h2 class="heading">Add Question</h2>
+					<br>
+					<c:url var="addAction" value="/question/${Exam_Id}/add"></c:url>
 
+					<form:form action="${addAction}" method="post"
+						modelAttribute="questions">
+						<c:if test="${!empty questions.question}">
+							<div class="form-group row">
+								<form:label path="question_Id" name="question_Id"
+									class="col-sm-2 col-form-label">Question
+							Id</</form:label>
+								<div class="col-sm-10">
+									<form:input class="form-control" name="question_Id"
+										path="question_Id" required="true"></form:input>
+								</div>
+							</div>
+						</c:if>
+						<div class="form-group row">
+							<form:label path="question" class="col-sm-2 col-form-label">Question</form:label>
+							<div class="col-sm-10">
+								<form:textarea class="form-control" path="question"
+									placeholder="Type Question here" required="true" rows="3"></form:textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<form:label path="option1" class="col-sm-2 col-form-label">Option
+						1</form:label>
+							<div class="col-sm-10">
+								<form:input path="option1" class="form-control"
+									placeholder="Type Option 1 here" required="true"></form:input>
+							</div>
+						</div>
+						<div class="form-group row">
+							<form:label path="option2" class="col-sm-2 col-form-label">Option
+						2</form:label>
+							<div class="col-sm-10">
+								<form:input path="option2" class="form-control"
+									placeholder="Type Option 2 here" required="true"></form:input>
+							</div>
+						</div>
+						<div class="form-group row">
+							<form:label path="option3" class="col-sm-2 col-form-label">Option3</form:label>
+							<div class="col-sm-10">
+								<form:input path="option3" class="form-control"
+									placeholder="Type Option 3 here" required="ture"></form:input>
+							</div>
+						</div>
+						<div class="form-group row">
+							<form:label path="option4" class="col-sm-2 col-form-label">Option
+						4</form:label>
+							<div class="col-sm-10">
+								<form:input path="option4" class="form-control"
+									placeholder="Type Option 4 here" required="ture"></form:input>
+							</div>
+						</div>
+						<div class="form-group row">
+							<form:label path="answer" class="col-sm-2 col-form-label">Answer</form:label>
+							<div class="col-sm-10">
+								<form:input path="answer" class="form-control"
+									placeholder="Type Answer here" required="true"></form:input>
+							</div>
+						</div>
+						<c:if test="${!empty questions.question}">
+							<div class="form-group row">
+								<div class="col-sm-10 offset-sm-2">
+									<button type="submit" class="btn btn-primary">update
+										Question</button>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${empty questions.question}">
+							<div class="form-group row">
+								<div class="col-sm-10 offset-sm-2">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</c:if>
+					</form:form>
+				</div>
+			</div>
+			<br>
+			<br>
 			<div class="container bs-example" align="center">
 
 				<c:if test="${!empty listOfQuestion}">
 					<h2 class="heading">Question List</h2>
-					<table class="table table-bordered">
+					<table class="table table-bordered-1 table-hover">
 						<thead>
 							<tr>
 								<th scope="col">Question Id</th>
@@ -124,8 +132,9 @@
 									<td>${question.option4}</td>
 									<td>${question.answer}</td>
 									<td><a
-										href="<c:url value='/question/${Exam_Id}/editQuestion/${question.question_Id}' />"><button>Edit</button></a>
-										<a href="<c:url value='/question/${Exam_Id}/deleteQuestion/${question.question_Id}' />"><button>Delete</button></a></td>
+										href="<c:url value='/question/${Exam_Id}/editQuestion/${question.question_Id}' />"><button class="btn btn-warning btn-shadow">Edit</button></a>
+										<a
+										href="<c:url value='/question/${Exam_Id}/deleteQuestion/${question.question_Id}' />"><button class="btn btn-danger btn-shadow">Delete</button></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -141,6 +150,5 @@
 				crossorigin="anonymous"></script>
 		</div>
 	</div>
-
 </body>
 </html>

@@ -16,6 +16,7 @@
 <title>Add Question</title>
 </head>
 <body>
+<jsp:include page="Header.jsp" />
 	<div class="container " align="center">
 		<div class="bs-example">
 			<h2 class="heading">Add Candidate</h2>

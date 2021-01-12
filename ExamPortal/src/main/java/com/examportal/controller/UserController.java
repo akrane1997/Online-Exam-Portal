@@ -136,7 +136,7 @@ public class UserController {
 	public String viewuserInfo(@AuthenticationPrincipal MyUserDetails userDetails,Model model) {
 		Long id = userDetails.Id();
 		User user = service.getUser(id);
-
+		
 		model.addAttribute("user", user);
 		return "UserInfo";
 	}
