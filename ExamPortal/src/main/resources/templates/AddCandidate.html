@@ -12,10 +12,18 @@
      		<form action="#" th:action="@{/addCandidate/${Exam_Id}/saveCandidate}" method=post
 			th:object="${user}">
 				<table>
-					<tr>
+					<tr  >
 						<td>User ID:</td>
 						<td><input type="text" placeholder="Enter User ID" th:field="*{user_Id}" /></td>
 					</tr>
+					<tr th:each="list : ${list}">
+					<label class="mb-1" for="role">
+					<h6 class="mb-0 text-sm">SelecRole</h6></label> 
+					<select class="form-control" name="role" id="role">
+								<option>select candidate</option>
+					<option><td th:text="${list.user_Id}">User ID</td>
+					<td th:text="${list.user_Name}">Name</td></tr></option>
+					</select>
 					<tr>
 						<td colspan="2"><button type="submit">Save</button></td>
 					</tr>

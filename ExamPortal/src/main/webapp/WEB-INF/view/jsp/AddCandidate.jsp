@@ -30,6 +30,19 @@
 						<form:input class="form-control" name="user_Id" path="user_Id"
 							placeholder="Enter User Id of Candidate " required="true"></form:input>
 					</div>
+					<div>
+					hi
+					<c:forEach var="list" items="${list}">
+					
+					<h6 class="mb-0 text-sm">Select-Candidate</h6></label> 
+					<select class="form-control" name="role" id="role">
+								<option>select candidate</option>
+								<option>${list.user.user_Id}</option>
+								<%-- <option>${list.user_Name}</option> --%>
+								</select>
+					</c:forEach>
+					
+					</div>
 				</div>
 
 				<div class="form-group row">
