@@ -49,6 +49,18 @@
 					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="/userinfo">User
 							Info</a></li>
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<div>
+							<li class="nav-item"><a class="nav-link"
+								href="/showcontact">Contact</a></li>
+						</div>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<div>
+							<li class="nav-item"><a class="nav-link"
+								href="/listfeedback">Feedbacks</a></li>
+						</div>
+					</sec:authorize>
 				</ul>
 				<ul class="navbar-nav nav-flex-icons">
 					<li class="nav-item"><a class="nav-link"><i
@@ -58,16 +70,16 @@
 					<li class="nav-item"><a class="nav-link"><i
 							class="fab fa-instagram"></i></a></li>
 				</ul>
-				
+
 			</div>
-			
+
 			<div>${pageContext.request.remoteUser}</div>
 			&nbsp; &nbsp;
 
 			<form:form action="/logout" method="post">
 				<input type="submit" value="Logout"></input>
 			</form:form>
-			
+
 		</nav>
 
 	</header>

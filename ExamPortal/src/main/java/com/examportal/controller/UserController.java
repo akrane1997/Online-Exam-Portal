@@ -100,7 +100,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("user") User user) {
+	public String saveUser(@ModelAttribute("user") User user) {
 		
 		
 		service.save(user);

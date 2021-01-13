@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Login Page</title>
-<!-- <link rel="stylesheet" th:href="@{css/login.css}"> -->
+<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -12,8 +11,6 @@
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous">
 </script>
-
-
 <style type="text/css">
 body {
 	overflow-x: hidden;
@@ -180,6 +177,7 @@ a {
 </style>
 </head>
 <body>
+
 	<!-- Navbar-->
 	<div id="navbar">
 		<header>
@@ -188,64 +186,72 @@ a {
 			</nav>
 		</header>
 	</div>
-
-
-
-	<!-- Login Page-->
-
-
-
+<body>
 	<div class="card card0 border-0">
+
 		<div class="row d-flex">
 			<div class="col-lg-6">
 				<div class="card1 pb-5">
-					<div class="row">
-							
-						</div> 
+					<!-- <div class="row">
+							<img
+								src="/images/8e360d02-2b22-46cb-92be-79ff301af21d_200x200.png"
+								class="logo">
+						</div> -->
 				</div>
 			</div>
 			<div class="col-lg-6">
+
 				<div class="card2 card border-1 shadow-lg px-4 py-5">
-					<form method="POST" th:action="@{/login}" class="form-signin">
+					<form method="post" th:action="@{/savefeedback}"
+						class="form-signin">
+						<h3>
+							<b>Feedback Form</b>
+						</h3>
+						<br>
 						<div class="row px-3">
 							<label class="mb-1">
-								<h6 class="mb-0 text-sm">User Name</h6>
-							</label> <input class="mb-4" type="text" name="username"
-								placeholder="Enter a valid user name" autofocus />
+								<h6 class="mb-0 text-sm">Name</h6>
+							</label> <input class="mb-4" type="text" name="name"
+								placeholder="Enter your name" autofocus />
 						</div>
+
+
+
 						<div class="row px-3">
 							<label class="mb-1">
-								<h6 class="mb-0 text-sm">Password</h6>
-							</label> <input type="password" name="password"
-								placeholder="Enter password">
+								<h6 class="mb-0 text-sm">Mobilenumber</h6>
+							</label> <input class="mb-4" type="text" name="mobilenumber"
+								placeholder="Enter your mobile_number" autofocus />
 						</div>
 
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-
-						<div class="row px-3 mb-4">
-							<div class="custom-control custom-checkbox custom-control-inline">
-								<input id="chk1" type="checkbox" name="chk"
-									class="custom-control-input"> <label for="chk1"
-									class="custom-control-label text-sm">Remember me</label>
-							</div>
-							<a href="/changepassword" class="ml-auto mb-0 text-sm">Forgot
-								Password?</a>
-
+						<div class="row px-3">
+							<label class="mb-1">
+								<h6 class="mb-0 text-sm">Subject</h6>
+							</label> <input class="mb-4" type="text" name="subject"
+								placeholder="Enter subject" autofocus />
 						</div>
+
+						<div class="row px-3">
+							<label class="mb-1"> </label>
+							<h6 class="mb-0 text-sm">Message</h6>
+							<textarea class="form-control" name="message" id="message"
+								rows="5" placeholder="Enter message" required="required"></textarea>
+						</div>
+						<br> <br>
+
 						<div class="row mb-3 px-3">
-							<button type="submit" class="btn btn-blue text-center">Login</button>
+							<button type="submit" class="btn btn-blue text-center">Submit</button>
 						</div>
 					</form>
 					<div class="row mb-4 px-3">
-						<small class="font-weight-bold">Don't have an account? <a
-							class="text-danger " href="/registration">Register</a></small>
+						<small class="font-weight-bold">Home page.. <a
+							class="text-danger " href="/">home</a></small>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- Footer -->
 	<footer class="page-footer font-small unique-color-dark badge-dark">
 
@@ -294,7 +300,6 @@ a {
 
 			</div>
 		</div>
-
 		<!-- Footer Links -->
 		<div class="container text-center text-md-left mt-5">
 
@@ -432,7 +437,7 @@ a {
 					<p>
 						<i class="fas fa-envelope mr-3"></i> ak.arane1997@gmail.com
 					</p>
-							<p>
+					<p>
 						<i class="fas fa-envelope mr-3"></i> hiteshsonar00@gmail.com
 					</p>
 					<p>
@@ -460,7 +465,6 @@ a {
 
 	</footer>
 	<!-- Footer -->
-
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
@@ -468,5 +472,6 @@ a {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>
