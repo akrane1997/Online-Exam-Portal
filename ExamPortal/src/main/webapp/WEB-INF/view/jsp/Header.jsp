@@ -6,12 +6,19 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+.bg-blue {
+	color: #fff;
+	background-color: #1A237E
+}
+
+</style>
 </head>
 <body>
 	<!--Main Navigation-->
 	<header>
 
-		<nav class="navbar navbar-expand-lg navbar-dark badge-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-blue">
 			<!-- 	<a class="navbar-brand" href="#"><img alt=""
 				src="/ExamPortal/src/main/webapp/resources/images/8e360d02-2b22-46cb-92be-79ff301af21d_200x200.png"><strong>Navbar</strong></a> -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"

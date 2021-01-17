@@ -13,10 +13,16 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
-	
+	<script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
 <title>show candidate</title>
 </head>
-<body >
+<body onLoad="noBack();" >
 <div>
 <jsp:include page="Header.jsp" />
 </div>
@@ -44,7 +50,7 @@
 								<td>${list.exam.exam_Id}</td>
 								<td>${list.exam.exam_Name}</td>
 								<td><a
-									href="<c:url value='/showExams/${list.exam.exam_Id}'  />"  ><button class="btn btn-success" >Start
+									href="<c:url value='/showExams/${list.exam.exam_Id}'  />"  ><button class="btn btn-success"  >Start
 											Exam</button></a></td>
 							</tr>
 						</c:forEach>

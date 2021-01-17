@@ -41,7 +41,11 @@ var countdown = [[${timmer}]];
 		setTimeout('doCount()', 1000);
 	}
 	
-	
+	window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
 
 		 var i=0;
 
