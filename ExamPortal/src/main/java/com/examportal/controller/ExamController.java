@@ -18,6 +18,7 @@ import com.examportal.details.MyUserDetails;
 import com.examportal.model.Exam;
 import com.examportal.model.Exam_user;
 import com.examportal.model.Questions;
+import com.examportal.model.Score;
 import com.examportal.model.User;
 import com.examportal.repo.UserRepository;
 import com.examportal.service.ExamService;

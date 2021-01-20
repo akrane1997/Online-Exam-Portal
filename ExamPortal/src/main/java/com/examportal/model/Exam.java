@@ -65,6 +65,8 @@ public class Exam {
     @ManyToMany(mappedBy = "exam")
     List<Score> examuserscore;
     
+ 
+    
 	public Exam() {
 		super();
 	}

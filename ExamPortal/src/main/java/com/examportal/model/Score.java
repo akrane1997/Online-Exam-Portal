@@ -34,6 +34,7 @@ public class Score {
 	Exam exam;
 	
 	
+	
 	private int score;
 
 	public Score() {

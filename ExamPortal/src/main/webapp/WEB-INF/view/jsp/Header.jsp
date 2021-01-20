@@ -68,6 +68,18 @@
 								href="/listfeedback">Feedbacks</a></li>
 						</div>
 					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
+						<div>
+							<li class="nav-item"><a class="nav-link"
+								href="/userList">Student List</a></li>
+						</div>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
+						<div>
+							<li class="nav-item"><a class="nav-link"
+								href="/teacherList">Teacher List</a></li>
+						</div>
+					</sec:authorize>
 				</ul>
 				<ul class="navbar-nav nav-flex-icons">
 					<li class="nav-item"><a class="nav-link"><i

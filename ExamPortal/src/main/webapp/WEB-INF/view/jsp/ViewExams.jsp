@@ -19,6 +19,11 @@
     {
         window.history.forward();
     }
+
+    /* function submitbtn(){
+    	getElementById("Submit_id").disabled=true;
+    	} */
+
 </script>
 <title>show candidate</title>
 </head>
@@ -40,6 +45,7 @@
 							<th scope="col">ExamId</th>
 							<th scope="col">Exam Name</th>
 							<th scope="col">Action</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -49,8 +55,9 @@
 								<td>${list.exam.startDate}</td>
 								<td>${list.exam.exam_Id}</td>
 								<td>${list.exam.exam_Name}</td>
+								
 								<td><a
-									href="<c:url value='/showExams/${list.exam.exam_Id}'  />"  ><button class="btn btn-success"  >Start
+									href="<c:url value='/showExams/${list.exam.exam_Id}'  />"  ><button class="btn btn-success" id="Submit_id" onClick="noBack();">Start
 											Exam</button></a></td>
 							</tr>
 						</c:forEach>

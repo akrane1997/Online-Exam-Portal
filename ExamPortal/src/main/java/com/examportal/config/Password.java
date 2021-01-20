@@ -1,5 +1,7 @@
 package com.examportal.config;
 
+import java.util.Base64.Decoder;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class Password {
@@ -9,5 +11,7 @@ public class Password {
 		String raw="ashok";
 		String encodedPassword = encoder.encode(raw);
 		System.out.println(encodedPassword);
+		
+		
 	}
 }

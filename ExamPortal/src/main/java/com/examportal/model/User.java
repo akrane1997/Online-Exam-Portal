@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,9 +21,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long user_Id;
 	private String user_Name;
-	private String password;
+	private String password="1234";
+	private String institute;
 	private String role;
-	private String enabled="1";
+	private String enabled;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Exam> exam=new ArrayList<Exam>();
@@ -46,28 +49,37 @@ public class User {
 
 	@ManyToMany(mappedBy = "user")
 	List<Exam_user> examuser;
-	
+
 	@ManyToMany(mappedBy = "user")
 	List<Score> examuserscore;
 
 
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "co_Id") Coordinator coordinator;
+	 */
+	
+	
 	public User() {
 		super();
 	}
 
+	
 
 
-
-	public User(long user_Id, String user_Name, String password, String role, String enabled, List<Exam> exam,
-			List<Exam_user> examuser) {
+	public User(long user_Id, String user_Name, String password, String institute, String role, String enabled,
+			List<Exam> exam, List<Exam_user> examuser, List<Score> examuserscore) {
 		super();
 		this.user_Id = user_Id;
 		this.user_Name = user_Name;
 		this.password = password;
+		this.institute = institute;
 		this.role = role;
 		this.enabled = enabled;
 		this.exam = exam;
 		this.examuser = examuser;
+		this.examuserscore = examuserscore;
 	}
 
 
@@ -116,18 +128,29 @@ public class User {
 		this.enabled = enabled;
 	}
 
-
-
-
 	public List<Exam_user> getExamuser() {
 		return examuser;
 	}
 
-
-
-
 	public void setExamuser(List<Exam_user> examuser) {
 		this.examuser = examuser;
+	}
+
+	
+	public String getInstitute() {
+		return institute;
+	}
+
+	public void setInstitute(String institute) {
+		this.institute = institute;
+	}
+
+	public List<Score> getExamuserscore() {
+		return examuserscore;
+	}
+
+	public void setExamuserscore(List<Score> examuserscore) {
+		this.examuserscore = examuserscore;
 	}
 
 

@@ -63,5 +63,17 @@ public class UserService {
 	public List<User> userList() {
         return repo.findByUserByRole();
     }
+	
+	public String findenable(String name) {
+		return repo.findEnable(name);
+	}
+	
+	public List<User> userList2(String role,String institute) {
+        return repo.findByUserByRole2( role,institute);
+    }
+
+	public List<User> TeacherList(String role,String institute) {
+        return repo.findByAdminByRole2(role,institute);
+    }
 
 }
