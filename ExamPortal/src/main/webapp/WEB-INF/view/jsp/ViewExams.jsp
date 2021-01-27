@@ -44,17 +44,19 @@
 							
 							<th scope="col">ExamId</th>
 							<th scope="col">Exam Name</th>
+							<th scope="col">result Id</th>
 							<th scope="col">Action</th>
 							
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="list" items="${list}">
+						<c:forEach var="list" items="${listWithResult}">
 							<tr>
 								
 								<td>${list.exam.startDate}</td>
 								<td>${list.exam.exam_Id}</td>
 								<td>${list.exam.exam_Name}</td>
+								<td>${list.score.scoreid}</td>
 								
 								<td><a
 									href="<c:url value='/showExams/${list.exam.exam_Id}'  />"  ><button class="btn btn-success" id="Submit_id" onClick="noBack();">Start

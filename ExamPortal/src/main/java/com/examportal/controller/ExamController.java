@@ -119,15 +119,21 @@ public class ExamController {
 	}
 
 	@RequestMapping("/addCandidate/{Exam_Id}")
-	public String addCandidtae(Model model,@PathVariable("Exam_Id") int Exam_Id) {
+	public String addCandidtae(@AuthenticationPrincipal MyUserDetails userDetails,Model model,@PathVariable("Exam_Id") int Exam_Id) {
 		User user=new User();
 		model.addAttribute("user", user);
 		
 		  List<Exam_user> list = exam_UserService.getExam_userByexam_Id(Exam_Id);
 		  model.addAttribute("list", list);
+		  
+		  Long id = userDetails.Id();
+			User user1 = userService.getUser(id);
+			String role="ROLE_USER";
 		 
-		List<User> userList = userService.userList();
-		model.addAttribute("userList", userList);
+			List<User> list2 = userService.userList2(role,user1.getInstitute());
+
+	
+		model.addAttribute("userList", list2);
 		return "AddCandidate";
 	}
 
@@ -159,11 +165,13 @@ public class ExamController {
 
 	@RequestMapping(value="/showExams")
 	public String viewexamsforstudent(@AuthenticationPrincipal MyUserDetails userDetails, Model model) {
-		Long id = userDetails.Id();
+		long id = userDetails.Id();
 		List<Exam_user> list = exam_UserService.getExamIdbyuserId(id);
 		//List<Exam> list = examService.getExamByUser_Id(id);
+		List<Exam_user> listWithResult=exam_UserService.getResultForExams(list, id);
 		System.out.println(id);
-		model.addAttribute("list", list);
+		System.out.println("result id: "+listWithResult);
+		model.addAttribute("listWithResult", listWithResult);
 		System.out.println(id);
 		return "ViewExams";
 	}

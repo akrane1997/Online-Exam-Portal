@@ -22,17 +22,24 @@ public class Exam_user {
 	@ManyToOne
 	@JoinColumn(name = "exam_id")
 	Exam exam;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "scoreid")
+	Score score;
+	
 	public Exam_user() {
 		super();
 	}
 
-	public Exam_user(long id, User user, Exam exam) {
+	public Exam_user(long id, User user, Exam exam, Score score) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.exam = exam;
+		this.score = score;
 	}
+
+
 
 	public long getId() {
 		return id;
@@ -58,7 +65,15 @@ public class Exam_user {
 		this.exam = exam;
 	}
 
+	public Score getScore() {
+		return score;
+	}
 
+	public void setScore(Score score) {
+		this.score = score;
+	}
+
+	
 
 
 

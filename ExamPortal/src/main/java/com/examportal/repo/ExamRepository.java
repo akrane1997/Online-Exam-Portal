@@ -12,7 +12,8 @@ public interface ExamRepository extends JpaRepository<Exam, Integer> {
 	List <Exam> findByUserUserIdentityUser_id(long user_Id);
 	@Query("select e from Exam e where e.Exam_Name = ?1")
 	List<Exam> findByExam_Name(String Exam_Name);
-	
+	@Query("SELECT e FROM Exam e WHERE e.user.user_Id = :user_Id")
+	Exam findExamId (long user_Id);
 	
 	
 }

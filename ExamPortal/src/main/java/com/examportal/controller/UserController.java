@@ -87,7 +87,11 @@ public class UserController {
 	//        return "index";
 	//    }
 	@RequestMapping("/")
-	public String viewHomePage(Model model) {
+	public String viewHomePage(@AuthenticationPrincipal MyUserDetails userDetails,Model model) {
+		Long id = userDetails.Id();
+		User user = service.getUser(id);
+		String institutename=user.getInstitute();
+		model.addAttribute("institutename", institutename);
 		List<User> list = service.userList();
 
 		model.addAttribute("list", list);
@@ -304,7 +308,7 @@ public class UserController {
 		{
 			
 			  String enableStatusApproved= "user approved.";
-			  String enableStatusApproved1="Note :- Firt you must do Forget Password with your User Name.";
+			  String enableStatusApproved1="Note :- First you must do Forget Password with your User Name.";
 			  
 			  model.addObject("enableStatusApproved",enableStatusApproved);
 			  model.addObject("enableStatusApproved1",enableStatusApproved1);

@@ -1,6 +1,7 @@
 package com.examportal.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
@@ -33,7 +35,8 @@ public class Score {
 	@JoinColumn(name = "exam_id")
 	Exam exam;
 	
-	
+	 @ManyToMany(mappedBy = "score") 
+	 List<Exam_user> examuser;     
 	
 	private int score;
 
@@ -43,14 +46,21 @@ public class Score {
 
 
 
-	public Score(long scoreid, Date examdate, User user, Exam exam, int score) {
+
+
+
+	public Score(long scoreid, Date examdate, User user, Exam exam, List<Exam_user> examuser, int score) {
 		super();
 		this.scoreid = scoreid;
 		this.examdate = examdate;
 		this.user = user;
 		this.exam = exam;
+		this.examuser = examuser;
 		this.score = score;
 	}
+
+
+
 
 
 
@@ -96,6 +106,18 @@ public class Score {
 
 	public void setExamdate(Date examdate) {
 		this.examdate = examdate;
+	}
+
+
+
+	public List<Exam_user> getExamuser() {
+		return examuser;
+	}
+
+
+
+	public void setExamuser(List<Exam_user> examuser) {
+		this.examuser = examuser;
 	}
 
 

@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.examportal.model.Exam_user;
+import com.examportal.model.Score;
 import com.examportal.repo.Exam_UserRepo;
 
 @Service
@@ -36,4 +38,20 @@ public class Exam_UserService {
 	{
 		exam_UserRepo.deleteById(id);
 	}
+	
+	@Transactional
+	public List<Exam_user> getResultForExams(List<Exam_user> examList,long id )
+	{
+		for (Exam_user exam_user : examList) {
+			Score score=exam_UserRepo.getScore(exam_user.getExam().getExam_Id(), id);
+			score.getScoreid();
+			exam_user.setScore(score);
+			
+		}
+		
+		return examList;
+		
+	}
+
+
 }
