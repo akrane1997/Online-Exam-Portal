@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -11,6 +11,7 @@ xmlns:c="http://java.sun.com/jsp/jstl/core">
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous">
+	
 </script>
 <style type="text/css">
 body {
@@ -175,6 +176,7 @@ a {
 		margin: 0px 15px
 	}
 }
+
 div.hidden {
 	display: none;
 }
@@ -216,6 +218,8 @@ div.hidden {
 							<label class="mb-1">
 								<h6 class="mb-0 text-sm">User Name</h6>
 							</label> <input class="mb-4" type="text" name="username"
+								pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
+								title="Must contain at least one  number and one uppercase and lowercase letter, and at least 4 or more characters"
 								placeholder="Enter a valid user name" autofocus />
 						</div>
 
@@ -230,11 +234,13 @@ div.hidden {
 						<br>
 						<div class="row px-3">
 							<label class="mb-1" for="role"><h6 class="mb-0 text-sm">Select
-									Institute</h6></label> <select class="form-control" name="institute" id="institute">
+									Institute</h6></label> <select class="form-control" name="institute"
+								id="institute">
 								<option>select your Insititute</option>
-								
-									<option th:each="i : ${list}" th:value="${i.institute}" th:text="${i.institute}"></option>
-								
+
+								<option th:each="i : ${list}" th:value="${i.institute}"
+									th:text="${i.institute}"></option>
+
 							</select>
 						</div>
 						<br>
@@ -257,7 +263,9 @@ div.hidden {
 			</div>
 		</div>
 	</div>
-<br><br><br>
+	<br>
+	<br>
+	<br>
 	<!-- Footer -->
 	<footer class="page-footer font-small unique-color-dark bg-blue">
 
