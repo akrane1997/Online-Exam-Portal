@@ -25,6 +25,7 @@ public class ResultController {
 	public ModelAndView showcandidateScorebyuserId(@AuthenticationPrincipal MyUserDetails userDetails)
 	{
 		Score result=new Score();
+		
 		Long id = userDetails.Id();
 		System.out.println(id);
 		ModelAndView mv=new ModelAndView("Result");

@@ -168,10 +168,10 @@ public class ExamController {
 		long id = userDetails.Id();
 		List<Exam_user> list = exam_UserService.getExamIdbyuserId(id);
 		//List<Exam> list = examService.getExamByUser_Id(id);
-		List<Exam_user> listWithResult=exam_UserService.getResultForExams(list, id);
+//		List<Exam_user> listWithResult=exam_UserService.getResultForExams(list, id);
 		System.out.println(id);
-		System.out.println("result id: "+listWithResult);
-		model.addAttribute("listWithResult", listWithResult);
+		System.out.println("result id: "+list);
+		model.addAttribute("list", list);
 		System.out.println(id);
 		return "ViewExams";
 	}
