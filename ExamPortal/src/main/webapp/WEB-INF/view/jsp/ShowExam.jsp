@@ -126,7 +126,7 @@ var countdown = [[${timmer}]];
 												<div class="form-check">
 													<input class="form-check-input" type="radio"
 														name="option_${question.question_Id}" id="gridRadios1"
-														value="option1"> <label class="form-check-label"
+														value="option2"> <label class="form-check-label"
 														for="gridRadios1">${question.option2} </label>
 												</div>
 											</td>
@@ -136,7 +136,7 @@ var countdown = [[${timmer}]];
 												<div class="form-check">
 													<input class="form-check-input" type="radio"
 														name="option_${question.question_Id}" id="gridRadios1"
-														value="option1"> <label class="form-check-label"
+														value="option3"> <label class="form-check-label"
 														for="gridRadios1">${question.option3} </label>
 												</div>
 											</td>
@@ -146,7 +146,7 @@ var countdown = [[${timmer}]];
 												<div class="form-check">
 													<input class="form-check-input" type="radio"
 														name="option_${question.question_Id}" id="gridRadios1"
-														value="option1"> <label class="form-check-label"
+														value="option4"> <label class="form-check-label"
 														for="gridRadios1">${question.option4} </label>
 												</div>
 											</td>

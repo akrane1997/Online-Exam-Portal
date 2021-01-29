@@ -73,18 +73,6 @@
 						<ul>
 							<li><h5 class="text-left">Teacher can create their
 									exams in exam tab in navigation bar.</h5></li>
-							<li><h5 class="text-left">Exams have specific time for
-									completing exam.</h5></li>
-							<li><h5 class="text-left">candidate should be complete
-									their exams in given time.</h5></li>
-							<li><h5 class="text-left">During exam candidate cannot
-									go outside of exam.</h5></li>
-							<li><h5 class="text-left">If candidate go out side of
-									exam candidate will get warning after that exam will submit
-									automatically.</h5></li>
-							<li><h5 class="text-left">Candidate can find their
-									results in result tab in navigation bar.</h5></li>
-							<li><h5 class="text-left">Candidate can give feedback.</h5></li>
 						</ul>
 					</div>
 
@@ -106,7 +94,6 @@
 
 		</div>
 	</sec:authorize>
-
 	<br>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

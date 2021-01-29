@@ -153,9 +153,9 @@ public class QuestionController {
 		Long id = userDetails.Id();
 		System.out.println(id);
 		User user=userService.get(id);
-		System.out.println("score in :"+user);
+		System.out.println("user id for result  :"+user.getUser_Id());
 		Exam exam=examService.getExamByExamId(Exam_Id);
-		System.out.println("score in :"+exam);
+		System.out.println("exam id for score :"+exam.getExam_Id());
 		
 		
 		
