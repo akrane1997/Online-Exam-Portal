@@ -224,19 +224,19 @@ div.hidden {
 						</div>
 
 						<div class="row px-3">
-							<label class="mb-1" for="role"><h6 class="mb-0 text-sm">Select
-									Role</h6></label> <select class="form-control" name="role" id="role">
-								<option>select your role</option>
-								<option>Student</option>
-								<option>Teacher</option>
+							<label class="mb-1" for="role" ><h6 class="mb-0 text-sm">Select
+									Role</h6></label> <select class="form-control" name="role" id="role" required>
+								<option value="">select your role</option>
+								<option value="Student">Student</option>
+								<option value="Teacher">Teacher</option>
 							</select>
 						</div>
 						<br>
 						<div class="row px-3">
 							<label class="mb-1" for="role"><h6 class="mb-0 text-sm">Select
 									Institute</h6></label> <select class="form-control" name="institute"
-								id="institute">
-								<option>select your Insititute</option>
+								id="institute" required>
+								<option value="">select your Insititute</option>
 
 								<option th:each="i : ${list}" th:value="${i.institute}"
 									th:text="${i.institute}"></option>
